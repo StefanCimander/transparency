@@ -14,4 +14,11 @@ The graphical representation of these feature dependencies helps to get an overv
 
 ### IntelliJ IDEA
 
+### Database with Sample Data
+
+The schema of the database is described by the following entity relationship diagram:
+
+![ER Diagram]
+(https://raw.githubusercontent.com/StefanCimander/transparency/master/doc/ER%20Diagram.jpg)
+
 ## Build and Run
