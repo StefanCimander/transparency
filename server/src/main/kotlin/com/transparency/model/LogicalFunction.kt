@@ -1,4 +1,4 @@
-package model
+package com.transparency.model
 
 class LogicalFunction(val id: Long, val name: String) {
     private var receivingSignals: MutableSet<LogicalSignal> = HashSet()

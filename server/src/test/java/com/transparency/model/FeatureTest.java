@@ -1,4 +1,4 @@
-package model;
+package com.transparency.model;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
