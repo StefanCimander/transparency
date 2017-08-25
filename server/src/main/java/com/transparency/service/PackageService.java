@@ -1,7 +1,9 @@
 package com.transparency.service;
 
 import com.transparency.dao.PackageDAO;
+import com.transparency.entity.PackageEntity;
 import com.transparency.exception.HierarchyRootNotFoundException;
+import com.transparency.exception.PackageNotFoundException;
 import com.transparency.model.Package;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,12 @@ public class PackageService {
         return packageDAO.findAll().stream().map(Package::new).collect(Collectors.toList());
     }
 
-    public Package findById(long id) {
-        return new Package(packageDAO.findById(id));
+    public Package findById(long id) throws PackageNotFoundException {
+        PackageEntity packageEntity = packageDAO.findById(id);
+        if (packageEntity == null) {
+            throw new PackageNotFoundException(id);
+        }
+        return new Package(packageEntity);
     }
 
     public Package findHierarchy() throws HierarchyRootNotFoundException {

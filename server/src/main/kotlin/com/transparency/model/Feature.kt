@@ -8,7 +8,9 @@ class Feature(val id: Long, val name: String) {
     private var dependencies: MutableCollection<Dependency> = HashSet()
 
     constructor(entity: FeatureEntity): this(entity.id, entity.name) {
-        parentPackage = Package(entity.parentPackage)
+        if (entity.parentPackage != null) {
+            parentPackage = Package(entity.parentPackage)
+        }
     }
 
     fun addLogicalFunction(vararg functions: LogicalFunction) {

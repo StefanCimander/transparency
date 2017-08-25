@@ -22,7 +22,7 @@ class PackageDAO {
 
     fun findById(id: Long): PackageEntity {
         val session = sessionFactory.openSession()
-        val packageEntity = session.get(PackageEntity::class.java, id) as PackageEntity
+        val packageEntity = session.get(PackageEntity::class.java, id)
         Hibernate.initialize(packageEntity.features)
         session.close()
         return packageEntity

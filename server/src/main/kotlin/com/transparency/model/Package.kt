@@ -12,7 +12,9 @@ class Package(val id: Long, val name: String) {
         if (entity.parentPackage != null) {
             parentPackage = Package(entity.parentPackage)
         }
-        childPackages.addAll(entity.children.map(::Package))
+        if (entity.children != null) {
+            childPackages.addAll(entity.children.map(::Package))
+        }
     }
 
     constructor(id: Long, name: String, parentPackage: Package?): this(id, name) {

@@ -1,6 +1,7 @@
 package com.transparency.controller;
 
 import com.transparency.exception.HierarchyRootNotFoundException;
+import com.transparency.exception.PackageNotFoundException;
 import com.transparency.model.Package;
 import com.transparency.service.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class PackageController {
     }
 
     @RequestMapping(value = "/{id}")
-    public Package getById(@PathVariable long id) {
+    public Package getById(@PathVariable long id) throws PackageNotFoundException {
         return packageService.findById(id);
     }
 
