@@ -1,7 +1,5 @@
 package com.transparency.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +16,9 @@ public class PackageEntity {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
-    @Column(name = "parent_package_id")
-    private Long parentPackageId;
+    @ManyToOne
+    @JoinColumn(name="parent_package_id")
+    private PackageEntity parentPackage;
 
     @OneToMany(mappedBy = "parentPackage")
     private List<FeatureEntity> features = new ArrayList<>();
@@ -31,11 +29,6 @@ public class PackageEntity {
     protected PackageEntity() {
     }
 
-    public PackageEntity(final Long id, final String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public Long getId() {
         return id;
     }
@@ -44,16 +37,12 @@ public class PackageEntity {
         return name;
     }
 
-    public Long getParentPackageId() {
-        return parentPackageId;
+    public PackageEntity getParentPackage() {
+        return parentPackage;
     }
 
     public List<PackageEntity> getChildren() {
         return children;
-    }
-
-    public void addChildPackage(PackageEntity childPackage) {
-        children.add(childPackage);
     }
 
     public List<FeatureEntity> getFeatures() {

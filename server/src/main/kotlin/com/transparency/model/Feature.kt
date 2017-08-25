@@ -9,13 +9,7 @@ class Feature(val id: Long, val name: String) {
 
     constructor(entity: FeatureEntity): this(entity.id, entity.name) {
         parentPackage = Package(entity.parentPackage)
-//        dependencies = unifiedDependenciesOf(entity)
     }
-//
-//    private fun unifiedDependenciesOf(entity: FeatureEntity): MutableCollection<Dependency> {
-//        return HashSet(entity.linkedFeatures.map { Dependency(it.id, it.name, DependencyType.FEATURE_LINK) }
-//                .union(entity.dependentFeatures.map { Dependency(it.id, it.name, DependencyType.LOGICAL_DEPENDENCY) }))
-//    }
 
     fun addLogicalFunction(vararg functions: LogicalFunction) {
         functions.forEach { logicalFunctions.add(it) }
