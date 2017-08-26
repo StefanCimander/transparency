@@ -20,7 +20,7 @@ class PackageDAO {
         return packages
     }
 
-    fun findById(id: Long): PackageEntity {
+    fun findById(id: Long): PackageEntity? {
         val session = sessionFactory.openSession()
         val packageEntity = session.get(PackageEntity::class.java, id)
         Hibernate.initialize(packageEntity.features)
