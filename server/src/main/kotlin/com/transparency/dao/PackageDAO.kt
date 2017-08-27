@@ -1,6 +1,7 @@
 package com.transparency.dao
 
 import com.transparency.entity.PackageEntity
+import com.transparency.exception.PackageNotFoundException
 import org.hibernate.Hibernate
 import org.hibernate.SessionFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,9 +21,10 @@ class PackageDAO {
         return packages
     }
 
-    fun findById(id: Long): PackageEntity? {
+    @Throws(PackageNotFoundException::class)
+    fun findById(id: Long): PackageEntity {
         val session = sessionFactory.openSession()
-        val packageEntity = session.get(PackageEntity::class.java, id)
+        val packageEntity = session.get(PackageEntity::class.java, id) ?: throw PackageNotFoundException(id)
         Hibernate.initialize(packageEntity.features)
         session.close()
         return packageEntity
