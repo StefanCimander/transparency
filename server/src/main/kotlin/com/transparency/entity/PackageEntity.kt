@@ -9,7 +9,7 @@ data class PackageEntity(@Id val id: Long, val name: String) {
 
     @ManyToOne
     @JoinColumn(name = "parent_package_id")
-    val parentPackage: PackageEntity? = null
+    var parentPackage: PackageEntity? = null
 
     @OneToMany(mappedBy = "parentPackage")
     val features: List<FeatureEntity> = ArrayList()

@@ -8,12 +8,12 @@ import static org.junit.Assert.assertTrue;
 
 public class PackageTests {
 
-    private static Package package1 = new Package(1, "Package 1", null);
-    private static Package package2 = new Package(2, "Package 2", package1);
-    private static Package package3 = new Package(3, "Package 3", package1);
-    private static Package package4 = new Package(4L, "Package 4", package2);
-    private static Package package5 = new Package(5L, "Package 5", package4);
-    private static Package package6 = new Package(6L, "Package 6", null);
+    private static Package package1 = new Package(1, null, "Package 1");
+    private static Package package2 = new Package(2, 1L, "Package 2");
+    private static Package package3 = new Package(3, 1L, "Package 3");
+    private static Package package4 = new Package(4L, 2L, "Package 4");
+    private static Package package5 = new Package(5L, 4L, "Package 5");
+    private static Package package6 = new Package(6L, null, "Package 6");
 
     @BeforeClass
     public static void setupPackageChildHierarchy() {
@@ -41,21 +41,21 @@ public class PackageTests {
 
     @Test
     public void childrenNotAffectedByInsertingUnrelatedPackageIntoChildHierarchy() {
-        Package packageToInsert = new Package(7L, "Package 7", null);
+        Package packageToInsert = new Package(7L, null, "Package 7");
         package6.addChildPackage(packageToInsert);
         assertFalse(package6.getChildPackages().contains(packageToInsert));
     }
 
     @Test
     public void hasNewChildAfterInsertingIntoChildHierarchy() {
-        Package packageToInsert = new Package(8L, "Package 8", package1);
+        Package packageToInsert = new Package(8L, 1L, "Package 8");
         package1.addChildPackage(packageToInsert);
         assertTrue(package1.getChildPackages().contains(packageToInsert));
     }
 
     @Test
     public void childHasNewChildAfterInsertingIntoChildHierarchy() {
-        Package packageToInsert = new Package(9L, "Package 9", package2);
+        Package packageToInsert = new Package(9L, 2L, "Package 9");
         package1.addChildPackage(packageToInsert);
         assertTrue(package1.getChildPackages().stream().anyMatch(child ->
                 child.getChildPackages().contains(packageToInsert))

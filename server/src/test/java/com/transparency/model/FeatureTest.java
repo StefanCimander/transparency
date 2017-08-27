@@ -12,9 +12,9 @@ import static org.junit.Assert.assertTrue;
 
 public class FeatureTest {
 
-    private static Feature feature1 = new Feature(1L, "Feature 1");
-    private static Feature feature2 = new Feature(2L, "Feature 2");
-    private static Feature feature3 = new Feature(3L, "Feature 3");
+    private static Feature feature1 = new Feature(1L, 1L, "Feature 1");
+    private static Feature feature2 = new Feature(2L, 1L, "Feature 2");
+    private static Feature feature3 = new Feature(3L, 1L, "Feature 3");
 
     private static LogicalFunction logicalFunction1 = new LogicalFunction(1L, "Logical Function 1");
     private static LogicalFunction logicalFunction2 = new LogicalFunction(2L, "Logical Function 2");
