@@ -32,7 +32,7 @@ class PackageService {
     }
 
     private fun findHierarchyRootIn(packages: List<Package>): Package? {
-        return packages.firstOrNull { it.parentPackage == null }
+        return packages.firstOrNull { it.parentPackageId == null }
     }
 
     private fun buildHierarchyWithRoot(rootPackage: Package, packages: List<Package>): Package {

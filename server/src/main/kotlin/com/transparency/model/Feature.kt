@@ -2,16 +2,11 @@ package com.transparency.model
 
 import com.transparency.entity.FeatureEntity
 
-class Feature(val id: Long, val name: String) {
-    var parentPackage: Package? = null
+class Feature(val id: Long, val parentPackageId: Long, val name: String) {
     private var logicalFunctions: MutableCollection<LogicalFunction> = HashSet()
     private var dependencies: MutableCollection<Dependency> = HashSet()
 
-    constructor(entity: FeatureEntity): this(entity.id, entity.name) {
-        if (entity.parentPackage != null) {
-            parentPackage = Package(entity.parentPackage)
-        }
-    }
+    constructor(entity: FeatureEntity): this(entity.id, entity.parentPackage.id, entity.name)
 
     fun addLogicalFunction(vararg functions: LogicalFunction) {
         functions.forEach { logicalFunctions.add(it) }

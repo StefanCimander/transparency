@@ -1,28 +1,22 @@
 package com.transparency.model
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.transparency.entity.PackageEntity
 
-class Package(val id: Long, val name: String) {
-    @JsonIgnore
-    var parentPackage: Package? = null
+class Package(val id: Long, val parentPackageId: Long?, val name: String) {
     val childPackages: MutableCollection<Package> = HashSet()
+    val features: MutableCollection<Feature> = HashSet()
 
-    constructor(entity: PackageEntity): this(entity.id, entity.name) {
-        if (entity.parentPackage != null) {
-            parentPackage = Package(entity.parentPackage)
-        }
+    constructor(entity: PackageEntity): this(entity.id, entity.parentPackage?.id, entity.name) {
         if (entity.children != null) {
-            childPackages.addAll(entity.children.map(::Package))
+            entity.children.forEach { addChildPackage(Package(it)) }
         }
-    }
-
-    constructor(id: Long, name: String, parentPackage: Package?): this(id, name) {
-        this.parentPackage = parentPackage
+        if (entity.features != null) {
+            entity.features.forEach { addFeature(Feature(it)) }
+        }
     }
 
     fun canAddPackageAsChild(packageToInsert: Package): Boolean {
-        return packageToInsert.parentPackage?.id == id
+        return packageToInsert.parentPackageId == id
                 || canChildInsertPackageIntoChildHierarchy(packageToInsert)
     }
 
@@ -39,10 +33,18 @@ class Package(val id: Long, val name: String) {
     }
 
     private fun insertPackageIntoChildHierarchy(childPackage: Package) {
-        if (childPackage.parentPackage?.id == id) {
+        if (childPackage.parentPackageId == id) {
             childPackages.add(childPackage)
         } else {
             childPackages.forEach { it.addChildPackage(childPackage) }
+        }
+    }
+
+    private fun addFeature(vararg features: Feature) {
+        features.forEach {
+            if (it.parentPackageId == id) {
+                this.features.add(it);
+            }
         }
     }
 }
