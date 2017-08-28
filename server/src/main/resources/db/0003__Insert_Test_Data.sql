@@ -15,4 +15,12 @@ INSERT INTO packages(id, parent_package_id, name) VALUES
 DELETE FROM features;
 
 INSERT INTO features(id, package_id, name) VALUES
-  (172,  83,    'Lane Change Warning');
+  (172,  83,    'Lane Change Warning'),
+  (47,   83,    'Lane Control');
+
+
+-- Feature Links
+DELETE FROM feature_links;
+
+INSERT INTO feature_links(linking_feature_id, linked_feature_id) VALUES
+  (47, 172);
