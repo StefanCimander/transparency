@@ -26,7 +26,7 @@ class PackageService {
 
     @Throws(HierarchyRootNotFoundException::class)
     fun findHierarchy(): Package {
-        val allPackages = packageDAO.findAll().map(::Package)
+        val allPackages = packageDAO.findAllWithFeatureDependencies().map(::Package)
         val rootPackage = findHierarchyRootIn(allPackages) ?: throw HierarchyRootNotFoundException()
         return buildHierarchyWithRoot(rootPackage, allPackages)
     }

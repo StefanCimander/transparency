@@ -3,10 +3,12 @@ package com.transparency.model
 import com.transparency.entity.FeatureEntity
 
 class Feature(val id: Long, val parentPackageId: Long, val name: String) {
+    var dependencies: MutableCollection<Dependency> = HashSet()
     private var logicalFunctions: MutableCollection<LogicalFunction> = HashSet()
-    private var dependencies: MutableCollection<Dependency> = HashSet()
 
-    constructor(entity: FeatureEntity): this(entity.id, entity.parentPackage.id, entity.name)
+    constructor(entity: FeatureEntity): this(entity.id, entity.parentPackage.id, entity.name) {
+        entity.linkedFeatures.forEach { dependencies.add(Dependency(it, DependencyType.FEATURE_LINK)) }
+    }
 
     fun addLogicalFunction(vararg functions: LogicalFunction) {
         functions.forEach { logicalFunctions.add(it) }

@@ -12,8 +12,5 @@ data class PackageEntity(@Id val id: Long, val name: String) {
     var parentPackage: PackageEntity? = null
 
     @OneToMany(mappedBy = "parentPackage")
-    val features: List<FeatureEntity> = ArrayList()
-
-    @Transient
-    var children: List<PackageEntity> = ArrayList()
+    lateinit var features: List<FeatureEntity>
 }
