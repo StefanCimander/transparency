@@ -15,7 +15,10 @@ class FeatureDAO {
     fun findAll(): List<FeatureEntity> {
         val session = sessionFactory.openSession()
         val features = session.createCriteria(FeatureEntity::class.java).list() as List<FeatureEntity>
-        features.forEach { Hibernate.initialize(it.parentPackage) }
+        features.forEach {
+            Hibernate.initialize(it.parentPackage)
+            Hibernate.initialize(it.linkedFeatures)
+        }
         session.close()
         return features
     }

@@ -16,7 +16,18 @@ class PackageDAO {
     fun findAll(): List<PackageEntity> {
         val session = sessionFactory.openSession()
         val packages = session.createCriteria(PackageEntity::class.java).list() as List<PackageEntity>
-        packages.forEach { Hibernate.initialize(it.features) }
+        packages.forEach { it.features = ArrayList() }
+        session.close()
+        return packages
+    }
+
+    fun findAllWithFeatureDependencies(): List<PackageEntity> {
+        val session = sessionFactory.openSession()
+        val packages = session.createCriteria(PackageEntity::class.java).list() as List<PackageEntity>
+        packages.forEach {
+            Hibernate.initialize(it.features)
+            it.features.forEach { feature -> Hibernate.initialize(feature.linkedFeatures)}
+        }
         session.close()
         return packages
     }
@@ -25,7 +36,7 @@ class PackageDAO {
     fun findById(id: Long): PackageEntity {
         val session = sessionFactory.openSession()
         val packageEntity = session.get(PackageEntity::class.java, id) ?: throw PackageNotFoundException(id)
-        Hibernate.initialize(packageEntity.features)
+        packageEntity.features = ArrayList()
         session.close()
         return packageEntity
     }

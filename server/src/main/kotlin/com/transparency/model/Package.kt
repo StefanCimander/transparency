@@ -7,9 +7,6 @@ class Package(val id: Long, val parentPackageId: Long?, val name: String) {
     val features: MutableCollection<Feature> = HashSet()
 
     constructor(entity: PackageEntity): this(entity.id, entity.parentPackage?.id, entity.name) {
-        if (entity.children != null) {
-            entity.children.forEach { addChildPackage(Package(it)) }
-        }
         if (entity.features != null) {
             entity.features.forEach { addFeature(Feature(it)) }
         }
