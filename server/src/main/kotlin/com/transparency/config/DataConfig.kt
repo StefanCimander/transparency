@@ -1,15 +1,12 @@
 package com.transparency.config
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource
-import org.apache.tomcat.jdbc.pool.DataSource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.PropertySource
 import org.springframework.core.env.Environment
 import org.springframework.core.io.ClassPathResource
-import org.springframework.core.io.Resource
-import org.springframework.orm.hibernate3.LocalSessionFactoryBean
 
 @Configuration
 @PropertySource("application.properties")

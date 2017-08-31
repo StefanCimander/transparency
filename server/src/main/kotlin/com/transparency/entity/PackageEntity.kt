@@ -1,6 +1,5 @@
 package com.transparency.entity
 
-import java.util.ArrayList
 import javax.persistence.*
 
 @Entity

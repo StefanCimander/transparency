@@ -1,8 +1,6 @@
 package com.transparency.entity
 
 import javax.persistence.*
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
 
 @Entity
 @Table(name = "features")

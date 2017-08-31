@@ -1,7 +1,6 @@
 package com.transparency.service
 
 import com.transparency.dao.PackageDAO
-import com.transparency.entity.PackageEntity
 import com.transparency.exception.HierarchyRootNotFoundException
 import com.transparency.exception.PackageNotFoundException
 import com.transparency.model.Package
