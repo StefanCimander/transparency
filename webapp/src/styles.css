@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+  height: 100%;
+}
+
+
+/* TODO: SC - Move the following style rules to the edge-bundles component css */
+
+.node {
+  font: 300 .8em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  fill: #aaa;
+  cursor: pointer;
+}
+
+.node:hover {
+  fill: #000;
+}
+
+.link {
+  stroke: steelblue;
+  stroke-opacity: 0.5;
+  fill: none;
+  pointer-events: none;
+}
+
+.node:hover,
+.node--source,
+.node--target {
+  font-weight: 500;
+}
+
+.node--source {
+  fill: #2ca02c;
+}
+
+.node--target {
+  fill: #d62728;
+}
+
+.link--source,
+.link--target {
+  stroke-width: 2px;
+}
+
+.link--source {
+  stroke: #d62728;
+}
+
+.link--target {
+  stroke: #2ca02c;
+}

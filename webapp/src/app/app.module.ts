@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { PackageService } from './services';
+import { EdgeBundlesComponent } from './components';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EdgeBundlesComponent
   ],
   imports: [
     BrowserModule,

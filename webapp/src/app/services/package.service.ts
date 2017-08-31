@@ -22,4 +22,10 @@ export class PackageService {
       .map(res => res.json())
       .map(Package.fromAPI);
   }
+
+  public getHierarchy(): Observable<Package> {
+    return this.http.get(API_ROUTES.packages.hierarchy)
+      .map(res => res.json())
+      .map(Package.fromAPI);
+  }
 }
