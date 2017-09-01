@@ -3,8 +3,8 @@ package com.transparency.model
 import com.transparency.entity.PackageEntity
 
 class Package(val id: Long, val parentPackageId: Long?, val name: String) {
-    val childPackages: MutableCollection<Package> = HashSet()
-    val features: MutableCollection<Feature> = HashSet()
+    val childPackages: MutableList<Package> = ArrayList()
+    val features: MutableList<Feature> = ArrayList()
 
     constructor(entity: PackageEntity): this(entity.id, entity.parentPackage?.id, entity.name) {
         if (entity.features != null) {

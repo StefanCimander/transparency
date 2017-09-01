@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EdgeBundlesComponent } from './edge-bundles.component';
+import {EdgeBundlesComponent} from './edge-bundles.component';
 
 describe('EdgeBundlesComponent', () => {
   let component: EdgeBundlesComponent;

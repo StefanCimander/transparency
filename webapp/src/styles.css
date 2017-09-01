@@ -15,7 +15,7 @@ html, body {
 }
 
 .node:hover {
-  fill: #000;
+  fill: #555;
 }
 
 .link {
@@ -32,7 +32,7 @@ html, body {
 }
 
 .node--source {
-  fill: #2ca02c;
+  fill: steelblue;
 }
 
 .node--target {
@@ -46,8 +46,4 @@ html, body {
 
 .link--source {
   stroke: #d62728;
-}
-
-.link--target {
-  stroke: #2ca02c;
 }

@@ -1,0 +1,19 @@
+<md-card class="dashboard-card">
+  <md-card-title>
+    <h1>Feature Dependencies</h1>
+  </md-card-title>
+
+  <app-edge-bundles
+    [hierarchy]="dependencyHierarchy"
+    [diameter]="400"
+    [hierarchyWidth]="20"
+  ></app-edge-bundles>
+
+  <md-card-content>
+    Bundled edges graph for analysing detected feature dependencies.
+  </md-card-content>
+
+  <md-card-actions>
+    <button md-button routerLink="/dependencies" color="primary">DETAILS</button>
+  </md-card-actions>
+</md-card>

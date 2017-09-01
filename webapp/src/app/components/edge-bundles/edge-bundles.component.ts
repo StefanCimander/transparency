@@ -92,12 +92,11 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
 
     this.nodes = this.nodes
       .data(root.leaves())
-      .enter().append('text')
+      .enter().append('circle')
+      .attr('r', '4')
       .attr('class', 'node')
-      .attr('dy', '0.31em')
-      .attr('transform', d => 'rotate(' + (d.x - 90) + ')translate(' + (d.y + 8) + ',0)' + (d.x < 180 ? '' : 'rotate(180)'))
-      .attr('text-anchor', d => d.x < 180 ? 'start' : 'end')
-      .text(d => d.data.name)
+      .attr('transform', d =>
+        'rotate(' + (d.x - 90) + ')translate(' + (d.y + 8) + ')' + (d.x < 180 ? '' : 'rotate(180)'))
       .on('mouseover', d => this.mouseOver(d))
       .on('mouseout', d => this.mouseOuted())
       .on('click', d => this.mouseClicked(d));
@@ -131,7 +130,6 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
   private mouseClicked(d: any) {
     // this.onFeatureSelected.emit(d.data);
   }
-
 
   private featureDependencies(nodes: any[]) {
     const map = {}, dependencies = [];

@@ -1,0 +1,8 @@
+#app-title {
+  cursor: pointer;
+}
+
+md-toolbar {
+  padding-left: 2em;
+  box-shadow: .1em .1em .1em #888888;
+}

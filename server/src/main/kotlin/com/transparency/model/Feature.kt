@@ -3,8 +3,8 @@ package com.transparency.model
 import com.transparency.entity.FeatureEntity
 
 class Feature(val id: Long, val parentPackageId: Long, val name: String) {
-    var dependencies: MutableCollection<Dependency> = HashSet()
-    private var logicalFunctions: MutableCollection<LogicalFunction> = HashSet()
+    var dependencies: MutableList<Dependency> = ArrayList()
+    private var logicalFunctions: MutableList<LogicalFunction> = ArrayList()
 
     constructor(entity: FeatureEntity): this(entity.id, entity.parentPackage.id, entity.name) {
         entity.linkedFeatures.forEach { dependencies.add(Dependency(it, DependencyType.FEATURE_LINK)) }

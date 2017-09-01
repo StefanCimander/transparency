@@ -22,7 +22,6 @@ apply plugin: 'spring-boot'
 apply plugin: 'kotlin-spring'
 apply plugin: 'kotlin-jpa'
 
-// Specify the location where the dependencies will be found
 repositories {
     mavenCentral()
 }

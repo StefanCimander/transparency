@@ -1,11 +1,11 @@
 package com.transparency.model
 
 class LogicalFunction(val id: Long, val name: String) {
-    private var receivingSignals: MutableSet<LogicalSignal> = HashSet()
-    private var sendingSignals: MutableSet<LogicalSignal> = HashSet()
+    private var receivingSignals: MutableList<LogicalSignal> = ArrayList()
+    private var sendingSignals: MutableList<LogicalSignal> = ArrayList()
 
-    fun getReceivingSignals(): Set<LogicalSignal> {
-        return HashSet(receivingSignals)
+    fun getReceivingSignals(): List<LogicalSignal> {
+        return ArrayList(receivingSignals)
     }
 
     fun addReceivingSignal(vararg signals: LogicalSignal) {

@@ -1,0 +1,11 @@
+@import '~@angular/material/theming'
+
+@include mat-core()
+
+$transparency-app-primary: mat-palette($mat-green)
+$transparency-app-accent:  mat-palette($mat-amber)
+$transparency-app-warn:    mat-palette($mat-red)
+
+$transparency-app-theme: mat-light-theme($transparency-app-primary, $transparency-app-accent, $transparency-app-warn)
+
+@include angular-material-theme($transparency-app-theme)
