@@ -26,7 +26,11 @@ class PackageDAO {
         val packages = session.createCriteria(PackageEntity::class.java).list() as List<PackageEntity>
         packages.forEach {
             Hibernate.initialize(it.features)
-            it.features.forEach { feature -> Hibernate.initialize(feature.linkedFeatures)}
+            it.features.forEach {
+                Hibernate.initialize(it.linkedFeatures)
+                Hibernate.initialize(it.logicallyDependentFeatures)
+                it.logicalFunctions = ArrayList()
+            }
         }
         session.close()
         return packages

@@ -1,6 +1,11 @@
+DELETE FROM feature_function_mappings;
+DELETE FROM function_signal_links;
+DELETE FROM logical_functions;
+DELETE FROM logical_signals;
 DELETE FROM feature_links;
 DELETE FROM features;
 DELETE FROM packages;
+
 
 -- Packages
 INSERT INTO packages(id, parent_package_id, name) VALUES
@@ -28,8 +33,33 @@ INSERT INTO features(id, package_id, name) VALUES
 
 -- Feature Links
 INSERT INTO feature_links(linking_feature_id, linked_feature_id) VALUES
-  (172, 47),
-  (15, 5),
-  (92, 20),
-  (74, 204),
-  (64, 204);
+  (172,  47),
+  (15,   5),
+  (92,   20),
+  (74,   204),
+  (64,   204);
+
+
+-- Logical Functions
+INSERT INTO logical_functions(id, name) VALUES
+  (71,          'Four Wheel Drive Check'),
+  (263,         'External Position Provider'),
+  (161,         'Vehicle Guidance Actuating Value Generator');
+
+
+-- Feature Function Mappings
+INSERT INTO feature_function_mappings(feature_id, logical_function_id) VALUES
+  (20,   71),
+  (20,   263),
+  (64,   161);
+
+
+-- Logical Signals
+INSERT INTO logical_signals(id, name) VALUES
+  (863,        'Odometer Vehicle Position');
+
+
+-- Function Signal Links
+INSERT INTO function_signal_links(id, function_id, signal_id, direction) VALUES
+  (878,   263,   863,   'SENDER'),
+  (265,   161,   863,   'RECEIVER');

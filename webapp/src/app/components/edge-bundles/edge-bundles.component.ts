@@ -17,7 +17,6 @@ import { HierarchyElement } from "../../models";
   styleUrls: ['./edge-bundles.component.css'],
 })
 export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
-
   @Input() hierarchy: HierarchyElement;
 
   @Input() diameter = 800;
@@ -88,7 +87,7 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
       .enter().append('path')
       .each(d => { return d.source = d[0], d.target = d[d.length - 1]; })
       .attr('class', 'link')
-      .attr('d', this.line)
+      .attr('d', this.line);
 
     this.nodes = this.nodes
       .data(root.leaves())
@@ -99,7 +98,7 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
         'rotate(' + (d.x - 90) + ')translate(' + (d.y + 8) + ')' + (d.x < 180 ? '' : 'rotate(180)'))
       .on('mouseover', d => this.mouseOver(d))
       .on('mouseout', d => this.mouseOuted())
-      .on('click', d => this.mouseClicked(d));
+      .on('click', d => this.mouseClicked(d))
   }
 
   private mouseOver(d: any) {
@@ -132,18 +131,18 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
   }
 
   private featureDependencies(nodes: any[]) {
-    const map = {}, dependencies = [];
+    const namedNodes = { };
+    const dependencies = [];
 
     // Compute a map from name to node.
-    nodes.forEach(d => map[d.data.name] = d);
+    nodes.forEach(d => namedNodes[d.data.name] = d);
 
     // For each dependency, construct a link from the source to the target node.
     nodes.forEach(node => {
       if (node.data.dependencies) {
         node.data.dependencies.forEach(dependency => {
-          if (map[dependency.name]) {
-            const path = map[node.data.name].path(map[dependency.name]);
-            path.type = dependency.type;
+          if (namedNodes[dependency.name]) {
+            const path = namedNodes[node.data.name].path(namedNodes[dependency.name]);
             dependencies.push(path);
           }
         });

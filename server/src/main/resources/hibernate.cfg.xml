@@ -10,6 +10,9 @@
         <!-- Names the annotated entity classes -->
         <mapping class="com.transparency.entity.FeatureEntity"/>
         <mapping class="com.transparency.entity.PackageEntity"/>
+        <mapping class="com.transparency.entity.LogicalFunctionEntity"/>
+        <mapping class="com.transparency.entity.LogicalSignalEntity"/>
+        <mapping class="com.transparency.entity.FunctionSignalLinkEntity"/>
     </session-factory>
 
 </hibernate-configuration>
