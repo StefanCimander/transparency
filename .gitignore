@@ -58,3 +58,6 @@ Thumbs.db
 
 # Config files
 application.properties
+
+# Test data
+/data
