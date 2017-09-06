@@ -22,7 +22,7 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
   @Input() diameter = 800;
   @Input() hierarchyWidth = 200;
 
-  @ViewChild('container') element: ElementRef;
+  constructor(private element: ElementRef) { }
 
   private get radius() {
     return this.diameter / 2;
@@ -100,19 +100,16 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
         'rotate(' + (d.x - 90) + ')translate(' + (d.y + 8) + ')' + (d.x < 180 ? '' : 'rotate(180)'))
       .on('mouseover', d => this.mouseOver(d))
       .on('mouseout', d => this.mouseOuted())
-      .on('click', d => this.mouseClicked(d))
   }
 
   private mouseOver(d: any) {
-    this.nodes.each(node => {
-      node.isTarget = node.isSource = false;
-    });
+    this.nodes.each(node => node.isTarget = node.isSource = false);
+
     this.links
       .classed('link--target', link => { if (link.target === d) { return link.source.isSource = true; }})
       .classed('link--source', link => { if (link.source === d) { return link.target.isTarget = true; }})
       .classed('link--implicit', link => { if (link.source === d && link.isImplicit) { return link.target.isImplicit = true; }})
       .filter(link => link.target === d || link.source === d)
-      // .forEach(link => { if (link.hasClass('implicit')) { link.target.isImplicit = true; }})
       .raise();
 
     this.nodes
@@ -131,41 +128,20 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
       .classed('node--source', false);
   }
 
-  private mouseClicked(d: any) {
-    // this.onFeatureSelected.emit(d.data);
-  }
-
   private featureDependencies(nodes: any[]) {
-    const namedNodes = { };
-    const dependencies = [];
-
-    // Compute a map from name to node.
-    nodes.forEach(d => namedNodes[d.data.name] = d);
-
-    // For each dependency, construct a link from the source to the target node.
+    const dependencies: { path: Path2D, type: string }[] = [];
+    const namedNodes: Map<string, any> = new Map;
+    nodes.forEach(node => namedNodes.set(node.data.name, node));
     nodes.forEach(node => {
       if (node.data.dependencies) {
         node.data.dependencies.forEach(dependency => {
-          if (namedNodes[dependency.name]) {
-            const path = namedNodes[node.data.name].path(namedNodes[dependency.name]);
-            dependencies.push({ path: path, type: dependency.type});
+          if (namedNodes.has(dependency.name)) {
+            const path = namedNodes.get(node.data.name).path(namedNodes.get(dependency.name));
+            dependencies.push({ path: path, type: dependency.type });
           }
         });
       }
-      /*
-      if (this.selectedFeature && node.data.name === this.selectedFeature.name) {
-        this.selectedFeature.dependencies.forEach(dependency => {
-
-          if (map[dependency.name]) {
-            const path = map[node.data.name].path(map[dependency.name]);
-            path.type = dependency.type;
-            dependencies.push(path);
-          }
-        });
-      }
-      */
     });
     return dependencies;
   }
-
 }
