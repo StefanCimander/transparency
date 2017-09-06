@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS logical_dependencies;
 DROP TABLE IF EXISTS feature_function_mappings;
 DROP TABLE IF EXISTS feature_links;
 DROP TABLE IF EXISTS function_signal_links;
