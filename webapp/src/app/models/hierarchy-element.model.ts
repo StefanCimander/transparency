@@ -6,6 +6,7 @@ export class HierarchyElement {
     public name: string,
     public children: HierarchyElement[],
     public dependencies: HierarchyElement[],
+    public type?: string,
   ) { }
 
   public static fromPackage(pack: Package): HierarchyElement {
@@ -20,6 +21,6 @@ export class HierarchyElement {
   }
 
   private static fromDependency(dependency: Dependency): HierarchyElement {
-    return new HierarchyElement(dependency.id, dependency.name, [], []);
+    return new HierarchyElement(dependency.id, dependency.name, [], [], dependency.type);
   }
 }

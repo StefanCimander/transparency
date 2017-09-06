@@ -36,7 +36,11 @@ html, body {
 }
 
 .node--target {
-  fill: #d62728;
+  fill: #FFC107;
+}
+
+.node--implicit.node--target {
+  fill: #f44336;
 }
 
 .link--source,
@@ -45,5 +49,11 @@ html, body {
 }
 
 .link--source {
-  stroke: #d62728;
+  stroke: #FFC107;
 }
+
+.link--implicit.link--source {
+  stroke: #f44336;
+}
+
+

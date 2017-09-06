@@ -62,8 +62,8 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
 
     this.line = d3.radialLine()
       .curve(d3.curveBundle.beta(0.95))
-      .radius((d: any) => d.y)
-      .angle((d: any) => d.x / 180 * Math.PI);
+      .radius(d => d.y)
+      .angle(d => d.x / 180 * Math.PI);
   }
 
   private buildSVG(): void {
@@ -85,9 +85,11 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
     this.links = this.links
       .data(this.featureDependencies(root.leaves()))
       .enter().append('path')
-      .each(d => { return d.source = d[0], d.target = d[d.length - 1]; })
+      .each(d => { return d.source = d.path[0] })
+      .each(d => { return d.target = d.path[d.path.length - 1]; })
+      .each(d => { return d.isImplicit = d.type == 'LOGICAL_DEPENDENCY'})
       .attr('class', 'link')
-      .attr('d', this.line);
+      .attr('d', d => this.line(d.path));
 
     this.nodes = this.nodes
       .data(root.leaves())
@@ -103,17 +105,20 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
 
   private mouseOver(d: any) {
     this.nodes.each(node => {
-      node.target = node.source = false;
+      node.isTarget = node.isSource = false;
     });
     this.links
-      .classed('link--target', link => { if (link.target === d) { return link.source.source = true; }})
-      .classed('link--source', link => { if (link.source === d) { return link.target.target = true; }})
+      .classed('link--target', link => { if (link.target === d) { return link.source.isSource = true; }})
+      .classed('link--source', link => { if (link.source === d) { return link.target.isTarget = true; }})
+      .classed('link--implicit', link => { if (link.source === d && link.isImplicit) { return link.target.isImplicit = true; }})
       .filter(link => link.target === d || link.source === d)
+      // .forEach(link => { if (link.hasClass('implicit')) { link.target.isImplicit = true; }})
       .raise();
 
     this.nodes
-      .classed('node--target', node => node.target)
-      .classed('node--source', node => node.source);
+      .classed('node--target', node => node.isTarget)
+      .classed('node--source', node => node.isSource)
+      .classed('node--implicit', node => node.isImplicit);
   }
 
   private mouseOuted() {
@@ -143,7 +148,7 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
         node.data.dependencies.forEach(dependency => {
           if (namedNodes[dependency.name]) {
             const path = namedNodes[node.data.name].path(namedNodes[dependency.name]);
-            dependencies.push(path);
+            dependencies.push({ path: path, type: dependency.type});
           }
         });
       }

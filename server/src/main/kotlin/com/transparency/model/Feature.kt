@@ -7,8 +7,8 @@ class Feature(val id: Long, val parentPackageId: Long, val name: String) {
     var logicalFunctions: MutableList<LogicalFunction> = ArrayList()
 
     constructor(entity: FeatureEntity): this(entity.id, entity.parentPackage.id, entity.name) {
-        entity.linkedFeatures.forEach { dependencies.add(Dependency(it)) }
-        entity.logicallyDependentFeatures.forEach { dependencies.add(Dependency(it)) }
+        entity.linkedFeatures.forEach { dependencies.add(Dependency(it, DependencyType.FEATURE_LINK)) }
+        entity.logicallyDependentFeatures.forEach { dependencies.add(Dependency(it, DependencyType.LOGICAL_DEPENDENCY)) }
         entity.logicalFunctions.forEach { logicalFunctions.add(LogicalFunction(it)) }
     }
 

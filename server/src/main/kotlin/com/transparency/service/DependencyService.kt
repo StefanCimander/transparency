@@ -26,8 +26,8 @@ class DependencyService {
         otherFeatures.forEach {
             if (Feature(feature).logicallyDependsOn(Feature(it))) {
                 println("Detected logical dependency: " + feature.name + " -> " + it.name)
-                it.logicallyDependentFeatures.add(it)
-                featureDAO.update(it)
+                feature.logicallyDependentFeatures.add(it)
+                featureDAO.update(feature)
             }
         }
     }

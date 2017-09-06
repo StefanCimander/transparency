@@ -1,3 +1,4 @@
+DELETE FROM logical_dependencies;
 DELETE FROM feature_function_mappings;
 DELETE FROM function_signal_links;
 DELETE FROM logical_functions;
@@ -25,10 +26,10 @@ INSERT INTO features(id, package_id, name) VALUES
   (51,   19,    'Trailer Light Control'),
   (15,   15,    'Priority Warning'),
   (5,    15,    'Cross Traffic Assistant'),
-  (64,   15,    'Reverse Assistant'),
-  (92,   21,    'Electrical Steering Support'),
   (20,   15,    'Speed Control'),
-  (204,  15,    'Vehicle State Monitor');
+  (204,  15,    'Vehicle State Monitor'),
+  (92,   21,    'Electrical Steering Support'),
+  (64,   15,    'Reverse Assistant');
 
 
 -- Feature Links
