@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HierarchyElement } from "../../../models";
-import { PackageService } from "../../../services";
+import { HierarchyElement } from "../../models";
+import { PackageService } from "../../services";
 
 @Component({
   selector: 'app-dependencies-preview',

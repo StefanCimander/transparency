@@ -1,9 +1,8 @@
 import { Routes } from '@angular/router';
 
-import {
-  DashboardComponent,
-  DependenciesComponent,
-} from './components';
+import { DashboardComponent } from './dashboard';
+import { DependenciesComponent } from './dependencies';
+
 
 export const AppRoutes: Routes = [
   {

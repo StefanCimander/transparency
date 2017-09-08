@@ -1,0 +1,17 @@
+<md-card class="dashboard-card">
+  <md-card-title>
+    <h1>Distribution of Dependencies</h1>
+  </md-card-title>
+
+  <app-treemap
+    [hierarchy]="dependencyHierarchy">
+  </app-treemap>
+
+  <md-card-content>
+    The treemap indicates the number of dependencies by the size of the features areas.
+  </md-card-content>
+
+  <md-card-actions>
+    <button md-button routerLink="/treemap" color="primary">DETAILS</button>
+  </md-card-actions>
+</md-card>

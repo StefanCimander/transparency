@@ -4,7 +4,6 @@ import {
   ElementRef,
   Input,
   OnChanges,
-  ViewChild
 } from '@angular/core';
 
 import * as d3 from 'd3';

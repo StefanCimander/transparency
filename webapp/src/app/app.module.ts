@@ -8,11 +8,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 
+import { DashboardComponent, DependenciesPreviewComponent, TreemapPreviewComponent } from './dashboard';
+import { DependenciesComponent } from './dependencies/';
+import { EdgeBundlesComponent, TreemapComponent } from './visualizations';
+
 import { PackageService } from './services';
-import { EdgeBundlesComponent } from './components';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DependenciesComponent } from './components/dependencies/dependencies.component';
-import { DependenciesPreviewComponent } from './components/dashboard/dependencies-preview/dependencies-preview.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,9 @@ import { DependenciesPreviewComponent } from './components/dashboard/dependencie
     EdgeBundlesComponent,
     DashboardComponent,
     DependenciesComponent,
-    DependenciesPreviewComponent
+    DependenciesPreviewComponent,
+    TreemapComponent,
+    TreemapPreviewComponent
   ],
   imports: [
     BrowserAnimationsModule,

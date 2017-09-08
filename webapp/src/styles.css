@@ -56,4 +56,10 @@ html, body {
   stroke: #f44336;
 }
 
+svg {
+  font: 10px sans-serif;
+}
 
+.treemap {
+  padding: 1em;
+}
