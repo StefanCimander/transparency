@@ -3,7 +3,6 @@ package com.transparency.service
 import com.transparency.dao.FeatureDAO
 import com.transparency.entity.FeatureEntity
 import com.transparency.model.Feature
-
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -13,13 +12,18 @@ class DependencyService {
     @Autowired
     lateinit var featureDAO: FeatureDAO
 
+    @Autowired
+    lateinit var appSettingService: AppSettingService
+
     fun analyseImplicitFeatureDependencies() {
         val allFeatures = featureDAO.findAllCompletelyInitialized()
+        println("Analysing logical dependencies for ${allFeatures.size} features")
         allFeatures.forEach {
             val otherFeatures = ArrayList(allFeatures)
             otherFeatures.remove(it)
             updateLogicalDependenciesFor(it, otherFeatures)
         }
+        appSettingService.updateWithNameToNewValue("status-implicit-dependencies", "analysed")
     }
 
     private fun updateLogicalDependenciesFor(feature: FeatureEntity, otherFeatures: List<FeatureEntity>) {
@@ -30,5 +34,18 @@ class DependencyService {
                 featureDAO.update(feature)
             }
         }
+    }
+
+    fun deleteImplicitDependencies() {
+        val allFeatures = featureDAO.findAllCompletelyInitialized()
+        println("Deleting logical dependencies from " +
+                "${allFeatures.filter { !it.logicallyDependentFeatures.isEmpty() }.size} features")
+        allFeatures.forEach { removeLogicalDependenciesFor(it) }
+        appSettingService.updateWithNameToNewValue("status-implicit-dependencies", "deleted")
+    }
+
+    private fun removeLogicalDependenciesFor(feature: FeatureEntity) {
+        feature.logicallyDependentFeatures.clear()
+        featureDAO.update(feature)
     }
 }

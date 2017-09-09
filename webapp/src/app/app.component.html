@@ -1,5 +1,19 @@
 <md-toolbar color="primary">
   <span routerLink="/" id="app-title">Transparency</span>
+  <span class="toolbar-remaining-spacer"></span>
+  <button md-icon-button class="toolbar-icon" [mdMenuTriggerFor]="more">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #more="mdMenu">
+    <button *ngIf="implicitDependenciesStatus=='deleted'" md-menu-item (click)="findDependenciesButtonClicked()">
+      <md-icon>search</md-icon>
+      <span>Find Implicit Dependencies</span>
+    </button>
+    <button *ngIf="implicitDependenciesStatus=='analysed'" md-menu-item (click)="clearDependenciesButtonClicked()">
+      <md-icon>clear</md-icon>
+      <span>Clear Implicit Dependencies</span>
+    </button>
+  </md-menu>
 </md-toolbar>
 
 <router-outlet></router-outlet>

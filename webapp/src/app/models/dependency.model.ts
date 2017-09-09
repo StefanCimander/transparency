@@ -5,11 +5,11 @@ export class Dependency {
     public type: string,
   ) { }
 
-  public static fromAPI (apiRepresentation: ApiDependency): Dependency {
+  public static fromAPI (apiDependency: ApiDependency): Dependency {
     return new Dependency(
-      apiRepresentation.id,
-      apiRepresentation.name,
-      apiRepresentation.type,
+      apiDependency.id,
+      apiDependency.name,
+      apiDependency.type,
     );
   }
 }

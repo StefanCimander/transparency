@@ -19,5 +19,4 @@ export class DashboardComponent implements OnInit {
       this.dependencyHierarchy = HierarchyElement.fromPackage(rootPackage)
     );
   }
-
 }

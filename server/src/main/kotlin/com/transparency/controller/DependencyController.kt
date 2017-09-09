@@ -3,10 +3,7 @@ package com.transparency.controller
 import com.transparency.service.DependencyService
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @CrossOrigin
 @RestController
@@ -16,8 +13,13 @@ class DependencyController {
     @Autowired
     lateinit var dependencyService: DependencyService
 
+    @DeleteMapping()
+    fun deleteImplicitFeatureDependencies() {
+        dependencyService.deleteImplicitDependencies()
+    }
+
     @PutMapping(value = "/analyse")
-    fun analyseLogicalFeatureDependencies() {
+    fun analyseImplicitFeatureDependencies() {
         dependencyService.analyseImplicitFeatureDependencies()
     }
 }

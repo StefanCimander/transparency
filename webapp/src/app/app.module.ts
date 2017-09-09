@@ -2,7 +2,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { MdToolbarModule, MdCardModule, MdButtonModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdIconModule, MdMenuModule, MdToolbarModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -12,7 +12,7 @@ import { DashboardComponent, DependenciesPreviewComponent, TreemapPreviewCompone
 import { DependenciesComponent } from './dependencies/';
 import { EdgeBundlesComponent, TreemapComponent } from './visualizations';
 
-import { PackageService } from './services';
+import { AppSettingService, DependencyService, PackageService } from './services';
 
 @NgModule({
   declarations: [
@@ -28,12 +28,18 @@ import { PackageService } from './services';
     BrowserAnimationsModule,
     BrowserModule,
     HttpModule,
-    MdToolbarModule,
-    MdCardModule,
     MdButtonModule,
+    MdCardModule,
+    MdIconModule,
+    MdMenuModule,
+    MdToolbarModule,
     RouterModule.forRoot(AppRoutes)
   ],
-  providers: [PackageService],
+  providers: [
+    AppSettingService,
+    DependencyService,
+    PackageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

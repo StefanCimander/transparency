@@ -7,6 +7,10 @@ DELETE FROM feature_links;
 DELETE FROM features;
 DELETE FROM packages;
 
+-- App Settings
+INSERT INTO app_settings(name, setting) VALUES
+  ('status-implicit-dependencies',  'deleted');
+
 
 -- Packages
 INSERT INTO packages(id, parent_package_id, name) VALUES

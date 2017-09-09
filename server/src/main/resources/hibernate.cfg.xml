@@ -8,6 +8,7 @@
         <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
 
         <!-- Names the annotated entity classes -->
+        <mapping class="com.transparency.entity.AppSettingEntity"/>
         <mapping class="com.transparency.entity.FeatureEntity"/>
         <mapping class="com.transparency.entity.PackageEntity"/>
         <mapping class="com.transparency.entity.LogicalFunctionEntity"/>

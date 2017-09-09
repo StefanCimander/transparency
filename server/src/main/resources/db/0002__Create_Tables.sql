@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS app_settings;
 DROP TABLE IF EXISTS logical_dependencies;
 DROP TABLE IF EXISTS feature_function_mappings;
 DROP TABLE IF EXISTS feature_links;
@@ -6,6 +7,13 @@ DROP TABLE IF EXISTS logical_functions;
 DROP TABLE IF EXISTS logical_signals;
 DROP TABLE IF EXISTS features;
 DROP TABLE IF EXISTS packages;
+
+
+-- App Settings
+CREATE TABLE IF NOT EXISTS app_settings (
+  name                VARCHAR(255)  NOT NULL CONSTRAINT app_settings_pk PRIMARY KEY,
+  setting             VARCHAR(255)  NOT NULL
+);
 
 
 -- Packages
