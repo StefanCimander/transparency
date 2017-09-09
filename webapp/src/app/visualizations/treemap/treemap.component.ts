@@ -42,61 +42,36 @@ export class TreemapComponent implements OnChanges {
   private redrawTreemap() {
     const root = d3.hierarchy(this.hierarchy)
       .eachBefore(d => { d.data.id = (d.parent ? d.parent.data.id + "." : "") + d.data.name })
-      .sum(d => this.sumByNumberOfDependencies(d))
-      .sort((a, b) => {
-        return b.height - a.height || b.value - a.value
-      });
+      .sum(d => d.dependencies.length)
+      .sort((a, b) => b.height - a.height || b.value - a.value)
 
     this.treemap(root);
 
     const cell = this.svg.selectAll("g")
       .data(root.leaves())
       .enter().append("g")
-      .attr("transform", d => {
-        return `translate(${d.x0}, ${d.y0})`
-      });
+      .attr('transform', d => `translate(${d.x0}, ${d.y0})`);
 
-    const fader = color => {
-      return d3.interpolateRgb(color, 'white')(0.2)
-    };
+    const fader = color => d3.interpolateRgb(color, 'white')(0.2);
     const color = d3.scaleOrdinal(d3.schemeCategory20.map(fader));
 
     cell.append("rect")
-      .attr("id", d => {
-        return d.data.id
-      })
-      .attr("width", d => {
-        return d.x1 - d.x0
-      })
-      .attr("height", d => {
-        return d.y1 - d.y0
-      })
-      .attr("fill", d => {
-        if (d.parent) {
-          return color(d.parent.data.id)
-        }
-        return 'white'
-      });
+      .attr('id', d => d.data.id)
+      .attr('width', d => d.x1 - d.x0)
+      .attr('height', d => d.y1 - d.y0)
+      .attr('fill', d => d.parent ? color(d.parent.data.id) : 'white');
 
     cell.append("clipPath")
-      .attr("id", d => {
-        return "clip-" + d.data.id
-      })
-      .append("use")
-      .attr("xlink:href", d => {
-        return "#" + d.data.id
-      });
+      .attr('id', d => `clip-${d.data.id}`)
+      .append('use')
+      .attr('xlink:href', d => `#${d.data.id}`);
 
     /*
     cell.append("text")
-      .attr("clip-path", d => {
-        return `url(#clip-${d.data.id})`
-      })
-      .selectAll("tspan")
-      .data(function (d) {
-        return d.data.name.split(/(?=[A-Z][^A-Z])/g);
-      })
-      .enter().append("tspan")
+      .attr("clip-path", d => `url(#clip-${d.data.id})`)
+      .selectAll('tspan')
+      .data(d => d.data.name.split(/(?=[A-Z][^A-Z])/g))
+      .enter().append('tspan')
       .attr("x", 4)
       .attr("y", (d, i) => 13 + i * 10)
       .attr('fill', 'white')
@@ -105,9 +80,5 @@ export class TreemapComponent implements OnChanges {
 
     cell.append("title")
       .text(d => d.data.id + "\n" + this.format(d.value) + " dependencies");
-  }
-
-  private sumByNumberOfDependencies(d) {
-    return d.dependencies.length;
   }
 }

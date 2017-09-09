@@ -1,22 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { HierarchyElement } from "../../models";
-import { PackageService } from "../../services";
 
 @Component({
   selector: 'app-dependencies-preview',
   templateUrl: './dependencies-preview.component.html',
   styleUrls: ['./dependencies-preview.component.css']
 })
-export class DependenciesPreviewComponent implements OnInit {
+export class DependenciesPreviewComponent {
 
-  public dependencyHierarchy: HierarchyElement = { id: 0, name: 'Root Package', children: [], dependencies: [] };
-
-  constructor(private packageService: PackageService) { }
-
-  public ngOnInit() {
-    this.packageService.getHierarchy().subscribe(rootPackage =>
-      this.dependencyHierarchy = HierarchyElement.fromPackage(rootPackage)
-    );
-  }
+  @Input() dependencyHierarchy: HierarchyElement = { id: 0, name: 'Root Package', children: [], dependencies: [] };
 }
