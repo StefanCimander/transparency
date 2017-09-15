@@ -1,9 +1,10 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { MdButtonModule, MdCardModule, MdIconModule, MdMenuModule, MdToolbarModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
@@ -28,11 +29,7 @@ import { AppSettingService, DependencyService, PackageService } from './services
     BrowserAnimationsModule,
     BrowserModule,
     HttpModule,
-    MdButtonModule,
-    MdCardModule,
-    MdIconModule,
-    MdMenuModule,
-    MdToolbarModule,
+    MaterialModule,
     RouterModule.forRoot(AppRoutes)
   ],
   providers: [
