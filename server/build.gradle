@@ -2,7 +2,7 @@ group 'com.transparency'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.4-3'
+    ext.kotlin_version = '1.1.51'
 
     repositories {
         mavenCentral()
@@ -35,8 +35,8 @@ dependencies {
     // Spring Dependencies
     compile 'org.springframework.boot:spring-boot-starter-data-rest'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework:spring-orm:4.2.5.RELEASE'
-    compile 'org.apache.tomcat:tomcat-dbcp:8.0.32'
+    compile 'org.springframework:spring-orm'
+    compile 'org.apache.tomcat:tomcat-dbcp:8.5.21'
 
     // PostgreSQL
     compile "org.postgresql:postgresql"

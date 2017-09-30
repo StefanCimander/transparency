@@ -1,6 +1,5 @@
 package com.transparency.controller
 
-import com.transparency.model.Feature
 import com.transparency.service.FeatureService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.CrossOrigin
@@ -17,7 +16,5 @@ class FeatureController {
     private lateinit var featureService: FeatureService
 
     @GetMapping()
-    fun getAll(): List<Feature> {
-        return featureService.findAll()
-    }
+    fun getAll() = featureService.findAll()
 }

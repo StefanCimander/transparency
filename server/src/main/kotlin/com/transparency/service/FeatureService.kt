@@ -11,7 +11,5 @@ class FeatureService {
     @Autowired
     private lateinit var featureDAO: FeatureDAO
 
-    fun findAll(): List<Feature> {
-        return featureDAO.findAll().map(::Feature)
-    }
+    fun findAll() = featureDAO.findAll().map(::Feature)
 }

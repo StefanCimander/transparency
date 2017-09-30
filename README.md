@@ -12,7 +12,7 @@ The graphical representation of these feature dependencies helps to get an overv
 
 The following domain model presents the relevant subjects of the E/E architecture:
 
-![Domain Model](https://raw.githubusercontent.com/StefanCimander/transparency/master/doc/domain-model.png)
+![Domain Model](img/domain-model.png)
 
 ## Setup and Configuration 
 

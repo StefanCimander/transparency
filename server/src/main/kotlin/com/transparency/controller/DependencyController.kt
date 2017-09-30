@@ -14,12 +14,8 @@ class DependencyController {
     lateinit var dependencyService: DependencyService
 
     @DeleteMapping()
-    fun deleteImplicitFeatureDependencies() {
-        dependencyService.deleteImplicitDependencies()
-    }
+    fun deleteImplicitFeatureDependencies() = dependencyService.deleteImplicitDependencies()
 
     @PutMapping(value = "/analyse")
-    fun analyseImplicitFeatureDependencies() {
-        dependencyService.analyseImplicitFeatureDependencies()
-    }
+    fun analyseImplicitFeatureDependencies() = dependencyService.analyseImplicitFeatureDependencies()
 }
