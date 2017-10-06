@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/StefanCimander/transparency.svg?token=f9aSHki9zHJ2Ax9f2WQC&branch=develop)](https://travis-ci.com/StefanCimander/transparency)
+
 # Transparency
 
 ## Project Goal
