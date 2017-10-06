@@ -4,6 +4,7 @@ import com.transparency.entity.FeatureEntity
 
 import org.hibernate.Hibernate
 import org.hibernate.SessionFactory
+
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
@@ -18,25 +19,21 @@ class FeatureDAO {
         val features = session.createCriteria(FeatureEntity::class.java).list() as List<FeatureEntity>
         features.forEach {
             Hibernate.initialize(it.parentPackage)
-            it.linkedFeatures = ArrayList()
+            it.linkedFeatures = emptyList()
             it.logicallyDependentFeatures = ArrayList()
-            it.logicalFunctions = ArrayList()
+            it.logicalFunctions = emptyList()
         }
         session.close()
         return features
     }
 
-    fun findAllWithLogicalFunctions(): List<FeatureEntity> {
+    fun findAllWithLinkedAndLogicalDependentFeatures(): List<FeatureEntity> {
         val session = sessionFactory.openSession()
         val features = session.createCriteria(FeatureEntity::class.java).list() as List<FeatureEntity>
         features.forEach {
-            Hibernate.initialize(it.parentPackage)
-            it.linkedFeatures = ArrayList()
-            it.logicallyDependentFeatures = ArrayList()
-            Hibernate.initialize(it.logicalFunctions)
-            it.logicalFunctions.forEach {
-                Hibernate.initialize(it.signalLinks)
-            }
+            Hibernate.initialize(it.linkedFeatures)
+            Hibernate.initialize(it.logicallyDependentFeatures)
+            it.logicalFunctions = emptyList()
         }
         session.close()
         return features

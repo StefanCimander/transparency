@@ -2,6 +2,7 @@ package com.transparency.service
 
 import com.transparency.dao.FeatureDAO
 import com.transparency.entity.FeatureEntity
+import com.transparency.model.DependencyStatistics
 import com.transparency.model.Feature
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -14,6 +15,13 @@ class DependencyService {
 
     @Autowired
     lateinit var appSettingService: AppSettingService
+
+    fun getDependencyStatistics(): DependencyStatistics {
+        val statistics = featureDAO.findAllWithLinkedAndLogicalDependentFeatures()
+                .map { Pair(it.linkedFeatures.size, it.logicallyDependentFeatures.size) }
+                .reduce { acc, pair -> Pair(acc.first + pair.first, acc.second + pair.second) }
+        return DependencyStatistics(statistics.first, statistics.second)
+    }
 
     fun analyseImplicitFeatureDependencies() {
         val allFeatures = featureDAO.findAllCompletelyInitialized()
