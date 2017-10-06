@@ -9,24 +9,24 @@ import { AppSettingService, DependencyService } from "./services";
 })
 export class AppComponent implements OnInit{
 
-  public implicitDependenciesStatus: String = "deleted";
+    public implicitDependenciesStatus: String = "deleted";
 
-  constructor(
-    private appSettingService: AppSettingService,
-    private dependencyService: DependencyService
-  ) { }
+    constructor(
+        private appSettingService: AppSettingService,
+        private dependencyService: DependencyService
+    ) { }
 
-  ngOnInit() {
-    this.appSettingService.getAll().subscribe(appSettings =>
-      this.implicitDependenciesStatus = appSettings[0].value
-    );
-  }
+    ngOnInit() {
+        this.appSettingService.getAll().subscribe(appSettings =>
+        this.implicitDependenciesStatus = appSettings[0].value
+        );
+    }
 
-  public findDependenciesButtonClicked() {
-    this.dependencyService.analyse().subscribe();
-  }
+    public findDependenciesButtonClicked() {
+        this.dependencyService.analyse().subscribe();
+    }
 
-  public clearDependenciesButtonClicked() {
-    this.dependencyService.remove().subscribe();
-  }
+    public clearDependenciesButtonClicked() {
+        this.dependencyService.remove().subscribe();
+    }
 }
