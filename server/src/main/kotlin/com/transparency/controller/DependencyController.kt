@@ -13,6 +13,9 @@ class DependencyController {
     @Autowired
     lateinit var dependencyService: DependencyService
 
+    @GetMapping(value = "/statistics")
+    fun getDependencyStatistics() = dependencyService.getDependencyStatistics()
+
     @DeleteMapping()
     fun deleteImplicitFeatureDependencies() = dependencyService.deleteImplicitDependencies()
 

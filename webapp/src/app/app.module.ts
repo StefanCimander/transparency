@@ -9,7 +9,7 @@ import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 
-import { DashboardComponent, DependenciesPreviewComponent, TreemapPreviewComponent } from './dashboard';
+import { DashboardComponent, DependenciesPreviewComponent, StatisticsComponent, TreemapPreviewComponent } from './dashboard';
 import { DependenciesComponent } from './dependencies/';
 import { EdgeBundlesComponent, TreemapComponent } from './visualizations';
 
@@ -22,6 +22,7 @@ import { AppSettingService, DependencyService, PackageService } from './services
     DashboardComponent,
     DependenciesComponent,
     DependenciesPreviewComponent,
+    StatisticsComponent,
     TreemapComponent,
     TreemapPreviewComponent
   ],
