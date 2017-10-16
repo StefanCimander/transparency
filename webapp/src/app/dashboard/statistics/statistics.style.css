@@ -1,0 +1,24 @@
+md-card-content {
+    text-align: center;
+}
+
+h2 {
+    font-weight: lighter;
+    font-size: 8em;
+    margin: .5em 0 0 0
+}
+
+p {
+    font-weight: 300;
+    font-size: 1.5em;
+    display: inline-block;
+
+}
+
+#explicit {
+    color: steelblue;
+}
+
+#implicit {
+    color: #f44336;
+}

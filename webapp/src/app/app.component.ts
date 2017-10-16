@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
 
     ngOnInit() {
         this.appSettingService.getAll().subscribe(appSettings =>
-        this.implicitDependenciesStatus = appSettings[0].value
+            this.implicitDependenciesStatus = appSettings[0].value
         );
     }
 

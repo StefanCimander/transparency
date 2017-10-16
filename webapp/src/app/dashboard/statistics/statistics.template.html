@@ -1,5 +1,12 @@
 <md-card class="dashboard-card">
-    <md-card-title>
-        <h1>Statistics</h1>
-    </md-card-title>
+  <md-card-title>
+    <h1>Statistics</h1>
+  </md-card-title>
+  <md-card-content>
+    <h2 id="explicit">{{ dependencyStatistic.numberOfFeatureLinks }}</h2>
+    <p>Explicit Feature Links</p>
+
+    <h2 id="implicit">{{ dependencyStatistic.numberOfImplicitDependencies }}</h2>
+    <p>Implicit Feature Dependencies</p>
+  </md-card-content>
 </md-card>

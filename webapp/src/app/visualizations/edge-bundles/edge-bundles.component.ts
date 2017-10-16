@@ -20,6 +20,7 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
 
   @Input() diameter = 800;
   @Input() hierarchyWidth = 200;
+  @Input() showFeatureNames = false;
 
   constructor(private element: ElementRef) { }
 
@@ -60,46 +61,60 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
       .size([360, this.innerRadius]);
 
     this.line = d3.radialLine()
-      .curve(d3.curveBundle.beta(0.95))
+      .curve(d3.curveBundle.beta(0.7))
       .radius(d => d.y)
       .angle(d => d.x / 180 * Math.PI);
   }
 
-  private buildSVG(): void {
-    this.host.html('');
-    this.svg = this.host.append('svg')
-      .attr('width', this.diameter)
-      .attr('height', this.diameter)
-      .append('g')
-      .attr('transform', 'translate(' + this.radius + ', ' + this.radius + ')');
+    private buildSVG(): void {
+        this.host.html('');
+        this.svg = this.host.append('svg')
+            .attr('width', this.diameter)
+            .attr('height', this.diameter)
+            .append('g')
+            .attr('transform', 'translate(' + this.radius + ', ' + this.radius + ')');
 
-    this.links = this.svg.append('g').selectAll('.link');
-    this.nodes = this.svg.append('g').selectAll('.node');
-  }
+        this.links = this.svg.append('g').selectAll('.link');
+        this.nodes = this.svg.append('g').selectAll('.node');
+    }
 
-  private populate(): void {
-    const root = d3.hierarchy(this.hierarchy, d => d.children);
-    this.cluster(root);
+    private populate(): void {
+        const root = d3.hierarchy(this.hierarchy, d => d.children);
+        this.cluster(root);
 
-    this.links = this.links
-      .data(this.featureDependencies(root.leaves()))
-      .enter().append('path')
-      .each(d => { return d.source = d.path[0] })
-      .each(d => { return d.target = d.path[d.path.length - 1]; })
-      .each(d => { return d.isImplicit = d.type == 'LOGICAL_DEPENDENCY'})
-      .attr('class', 'link')
-      .attr('d', d => this.line(d.path));
+        this.links = this.links
+            .data(this.featureDependencies(root.leaves()))
+            .enter().append('path')
+            .each(d => { return d.source = d.path[0] })
+            .each(d => { return d.target = d.path[d.path.length - 1]; })
+            .each(d => { return d.isImplicit = d.type == 'LOGICAL_DEPENDENCY'})
+            .attr('class', 'link')
+            .attr('d', d => this.line(d.path));
 
-    this.nodes = this.nodes
-      .data(root.leaves())
-      .enter().append('circle')
-      .attr('r', '4')
-      .attr('class', 'node')
-      .attr('transform', d =>
-        'rotate(' + (d.x - 90) + ')translate(' + (d.y + 8) + ')' + (d.x < 180 ? '' : 'rotate(180)'))
-      .on('mouseover', d => this.mouseOver(d))
-      .on('mouseout', d => this.mouseOuted())
-  }
+        if (this.showFeatureNames) {
+            this.nodes = this.nodes
+                .data(root.leaves())
+                .enter().append('text')
+                .attr('class', 'node')
+                .attr('dy', '0.31em')
+                .attr('transform', d =>
+                    'rotate(' + (d.x - 90) + ')translate(' + (d.y + 8) + ')' + (d.x < 180 ? '' : 'rotate(180)'))
+                .attr('text-anchor', d => d.x < 180 ? 'start' : 'end')
+                .on('mouseover', d => this.mouseOver(d))
+                .on('mouseout', d => this.mouseOuted())
+                .text(d => d.data.name)
+        } else {
+            this.nodes = this.nodes
+                .data(root.leaves())
+                .enter().append('circle')
+                .attr('r', '4')
+                .attr('class', 'node')
+                .attr('transform', d =>
+                    'rotate(' + (d.x - 90) + ')translate(' + (d.y + 8) + ')' + (d.x < 180 ? '' : 'rotate(180)'))
+                .on('mouseover', d => this.mouseOver(d))
+                .on('mouseout', d => this.mouseOuted())
+        }
+    }
 
   private mouseOver(d: any) {
     this.nodes.each(node => node.isTarget = node.isSource = false);

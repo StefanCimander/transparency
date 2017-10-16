@@ -4,8 +4,8 @@ import { HierarchyElement } from "../../models";
 
 @Component({
   selector: 'app-dependencies-preview',
-  templateUrl: './dependencies-preview.component.html',
-  styleUrls: ['./dependencies-preview.component.css']
+  templateUrl: './dependencies-preview.template.html',
+  styleUrls: ['./dependencies-preview.style.css']
 })
 export class DependenciesPreviewComponent {
 
