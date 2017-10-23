@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <span routerLink="/">Transparency</span>
+  <span class="toolbar-remaining-spacer"></span>
+  <button mat-icon-button class="toolbar-icon" [matMenuTriggerFor]="more">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #more="matMenu">
+    <button *ngIf="implicitDependenciesStatus=='deleted'" mat-menu-item (click)="findDependenciesButtonClicked()">
+      <mat-icon>search</mat-icon>
+      <span>Find Implicit Dependencies</span>
+    </button>
+    <button *ngIf="implicitDependenciesStatus=='analysed'" mat-menu-item (click)="clearDependenciesButtonClicked()">
+      <mat-icon>clear</mat-icon>
+      <span>Clear Implicit Dependencies</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

@@ -23,9 +23,18 @@ export class PackageService {
       .map(Package.fromAPI);
   }
 
-  public getHierarchy(): Observable<Package> {
-    return this.http.get(API_ROUTES.packages.hierarchy)
+  public getHierarchy(request: DependenciesRequest): Observable<Package> {
+    return this.http.get(API_ROUTES.packages.hierarchy
+        .replace(':dependenciesRequest', DependenciesRequest[request]))
       .map(res => res.json())
       .map(Package.fromAPI);
   }
+}
+
+export enum DependenciesRequest {
+  ALL_DEPENDENCIES,
+  ONLY_EXPLICIT,
+  ONLY_IMPLICIT,
+  CONFORMAL,
+  NON_CONFORMAL,
 }

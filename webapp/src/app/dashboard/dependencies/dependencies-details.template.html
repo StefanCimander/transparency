@@ -1,3 +1,44 @@
+<mat-card class="control-container">
+  <mat-radio-group class="dependencies-radio-group">
+
+    <mat-radio-button
+      class="dependencies-radio-button"
+      checked="true"
+      [value]="1"
+      (change)="dependenciesRequestChanged('All Dependencies')"
+      color="primary"
+    >All Dependencies</mat-radio-button>
+
+    <mat-radio-button
+      class="dependencies-radio-button"
+      [value]="2"
+      (change)="dependenciesRequestChanged('Only Explicit')"
+      color="primary"
+    >Only Explicit</mat-radio-button>
+
+    <mat-radio-button
+      class="dependencies-radio-button"
+      [value]="3"
+      (change)="dependenciesRequestChanged('Only Implicit')"
+      color="primary"
+    >Only Implicit</mat-radio-button>
+
+    <mat-radio-button
+      class="dependencies-radio-button"
+      [value]="4"
+      (change)="dependenciesRequestChanged('Conformal')"
+      color="primary"
+    >Conformal</mat-radio-button>
+
+    <mat-radio-button
+      class="dependencies-radio-button"
+      [value]="5"
+      (change)="dependenciesRequestChanged('Non Conformal')"
+      color="primary"
+    >Non Conformal</mat-radio-button>
+  </mat-radio-group>
+</mat-card>
+
 <div id="visualization-container">
   <app-edge-bundles
     [hierarchy]="dependencyHierarchy"

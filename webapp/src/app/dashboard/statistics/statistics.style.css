@@ -1,4 +1,4 @@
-md-card-content {
+mat-card-content {
     text-align: center;
 }
 
@@ -20,5 +20,5 @@ p {
 }
 
 #implicit {
-    color: #f44336;
+    color: #ff5858;
 }

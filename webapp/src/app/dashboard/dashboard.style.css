@@ -5,7 +5,6 @@
 :host >>> .dashboard-card {
     display: inline-block;
     margin: .5em;
-    min-width: 26em;
     max-width: 26em;
     min-height: 34.5em;
     float: left;

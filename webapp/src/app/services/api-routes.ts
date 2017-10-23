@@ -11,7 +11,7 @@ export const API_ROUTES = {
     packages: {
         all: `${API_BASE_URL}/packages`,
         withId: `${API_BASE_URL}/packages/:packageId`,
-        hierarchy: `${API_BASE_URL}/packages/hierarchy`
+        hierarchy: `${API_BASE_URL}/packages/hierarchy?dependencies=:dependenciesRequest`
     },
     dependencies: {
         remove: `${API_BASE_URL}/dependencies`,

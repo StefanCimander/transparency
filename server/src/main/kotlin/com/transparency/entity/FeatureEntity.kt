@@ -30,4 +30,11 @@ data class FeatureEntity(@Id val id: Long, val name: String) {
             joinColumns = arrayOf(JoinColumn(name = "feature_id", referencedColumnName = "id")),
             inverseJoinColumns = arrayOf(JoinColumn(name = "logical_function_id", referencedColumnName = "id")))
     lateinit var logicalFunctions: List<LogicalFunctionEntity>
+
+    override fun equals(other: Any?): Boolean {
+        if (other == null || other !is FeatureEntity) {
+            return false
+        }
+        return id == other.id
+    }
 }

@@ -4,8 +4,8 @@ import { HierarchyElement } from '../../models';
 
 @Component({
   selector: 'app-treemap-preview',
-  templateUrl: './treemap-preview.component.html',
-  styleUrls: ['./treemap-preview.component.css']
+  templateUrl: './treemap-preview.template.html',
+  styleUrls: ['./treemap-preview.style.css']
 })
 export class TreemapPreviewComponent {
 

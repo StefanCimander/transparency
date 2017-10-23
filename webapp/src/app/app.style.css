@@ -1,0 +1,17 @@
+mat-toolbar {
+    padding-left: 2em;
+    box-shadow: .1em .1em .1em #888888;
+}
+
+mat-toolbar span {
+    cursor: pointer;
+    color: white;
+}
+
+mat-toolbar mat-icon {
+    color: white;
+}
+
+.toolbar-remaining-spacer {
+    flex: 1 1 auto;
+}

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HierarchyElement } from '../models/';
-import { PackageService } from '../services';
+import { PackageService, DependenciesRequest } from '../services';
 
 @Component({
     selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css'],
+    templateUrl: './dashboard.template.html',
+    styleUrls: ['./dashboard.style.css'],
 })
 export class DashboardComponent implements OnInit {
 
@@ -15,8 +15,8 @@ export class DashboardComponent implements OnInit {
     constructor(private packageService: PackageService) { }
 
     ngOnInit() {
-        this.packageService.getHierarchy().subscribe( rootPackage =>
-        this.dependencyHierarchy = HierarchyElement.fromPackage(rootPackage)
+        this.packageService.getHierarchy(DependenciesRequest.ALL_DEPENDENCIES).subscribe( rootPackage =>
+            this.dependencyHierarchy = HierarchyElement.fromPackage(rootPackage)
         );
     }
 }

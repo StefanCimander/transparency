@@ -12,8 +12,8 @@ import { HierarchyElement } from "../../models";
 
 @Component({
   selector: 'app-edge-bundles',
-  templateUrl: './edge-bundles.component.html',
-  styleUrls: ['./edge-bundles.component.css'],
+  templateUrl: './edge-bundles.template.html',
+  styleUrls: ['./edge-bundles.style.css'],
 })
 export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
   @Input() hierarchy: HierarchyElement;
@@ -89,7 +89,8 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
             .each(d => { return d.target = d.path[d.path.length - 1]; })
             .each(d => { return d.isImplicit = d.type == 'LOGICAL_DEPENDENCY'})
             .attr('class', 'link')
-            .attr('d', d => this.line(d.path));
+            .attr('d', d => this.line(d.path))
+            .classed('link--implicit', link => link.isImplicit);
 
         if (this.showFeatureNames) {
             this.nodes = this.nodes
@@ -116,21 +117,21 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
         }
     }
 
-  private mouseOver(d: any) {
-    this.nodes.each(node => node.isTarget = node.isSource = false);
+    private mouseOver(d: any) {
+        this.nodes.each(node => node.isTarget = node.isSource = false);
 
-    this.links
-      .classed('link--target', link => { if (link.target === d) { return link.source.isSource = true; }})
-      .classed('link--source', link => { if (link.source === d) { return link.target.isTarget = true; }})
-      .classed('link--implicit', link => { if (link.source === d && link.isImplicit) { return link.target.isImplicit = true; }})
-      .filter(link => link.target === d || link.source === d)
-      .raise();
+        this.links
+            .each(link => { if (link.source === d && link.isImplicit) { link.source.isImplicit = true}} )
+            .classed('link--target', link => { if (link.target === d) { return link.source.isSource = true; }})
+            .classed('link--source', link => { if (link.source === d) { return link.target.isTarget = true; }})
+            .filter(link => link.target === d || link.source === d)
+            .raise();
 
-    this.nodes
-      .classed('node--target', node => node.isTarget)
-      .classed('node--source', node => node.isSource)
-      .classed('node--implicit', node => node.isImplicit);
-  }
+        this.nodes
+            .classed('node--target', node => node.isTarget)
+            .classed('node--source', node => node.isSource)
+            .classed('node--implicit', node => node.isImplicit);
+    }
 
   private mouseOuted() {
     this.links

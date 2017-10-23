@@ -1,0 +1,17 @@
+<mat-card class="dashboard-card">
+  <mat-card-title>
+    <h1>Distribution of Dependencies</h1>
+  </mat-card-title>
+
+  <app-treemap
+    [hierarchy]="dependencyHierarchy">
+  </app-treemap>
+
+  <mat-card-content>
+    The treemap indicates the number of dependencies by the size of the features areas.
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button routerLink="/treemap" color="primary">DETAILS</button>
+  </mat-card-actions>
+</mat-card>

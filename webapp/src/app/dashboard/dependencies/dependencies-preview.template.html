@@ -1,7 +1,7 @@
-<md-card class="dashboard-card">
-  <md-card-title>
+<mat-card class="dashboard-card">
+  <mat-card-title>
     <h1>Dependencies Overview</h1>
-  </md-card-title>
+  </mat-card-title>
 
   <app-edge-bundles
     [hierarchy]="dependencyHierarchy"
@@ -9,11 +9,11 @@
     [hierarchyWidth]="20"
   ></app-edge-bundles>
 
-  <md-card-content>
+  <mat-card-content>
     Bundled edges graph that presents the features and their dependencies in a circular arrangement.
-  </md-card-content>
+  </mat-card-content>
 
-  <md-card-actions>
-    <button md-button routerLink="/dependencies" color="primary">DETAILS</button>
-  </md-card-actions>
-</md-card>
+  <mat-card-actions>
+    <button mat-button routerLink="/dependencies" color="primary">DETAILS</button>
+  </mat-card-actions>
+</mat-card>

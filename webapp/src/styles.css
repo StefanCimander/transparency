@@ -5,7 +5,6 @@ html, body {
   height: 100%;
 }
 
-
 /* TODO: SC - Move the following style rules to the edge-bundles component css */
 
 .node {
@@ -15,7 +14,7 @@ html, body {
 }
 
 .node:hover {
-  fill: #555;
+  fill: #3EAE5C;
 }
 
 .link {
@@ -35,12 +34,8 @@ html, body {
   fill: steelblue;
 }
 
-.node--target {
-  fill: #FFC107;
-}
-
-.node--implicit.node--target {
-  fill: #f44336;
+.node--implicit.node--source {
+  fill: #ff5858;
 }
 
 .link--source,
@@ -48,12 +43,8 @@ html, body {
   stroke-width: 2px;
 }
 
-.link--source {
-  stroke: #FFC107;
-}
-
-.link--implicit.link--source {
-  stroke: #f44336;
+.link--implicit {
+  stroke: #ff5858;
 }
 
 svg {
