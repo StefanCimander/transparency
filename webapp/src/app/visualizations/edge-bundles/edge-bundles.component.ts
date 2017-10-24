@@ -17,10 +17,10 @@ import { HierarchyElement } from "../../models";
 })
 export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
   @Input() hierarchy: HierarchyElement;
-
   @Input() diameter = 800;
   @Input() hierarchyWidth = 200;
   @Input() showFeatureNames = false;
+  @Input() beta = 0.7;
 
   constructor(private element: ElementRef) { }
 
@@ -61,7 +61,7 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
       .size([360, this.innerRadius]);
 
     this.line = d3.radialLine()
-      .curve(d3.curveBundle.beta(0.7))
+      .curve(d3.curveBundle.beta(this.beta))
       .radius(d => d.y)
       .angle(d => d.x / 180 * Math.PI);
   }

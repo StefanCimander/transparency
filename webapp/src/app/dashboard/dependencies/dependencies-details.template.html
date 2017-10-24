@@ -37,6 +37,17 @@
       color="primary"
     >Non Conformal</mat-radio-button>
   </mat-radio-group>
+
+  <mat-slider
+    class="beta-slider"
+    color="primary"
+    [max]="1.0"
+    [min]="0.0"
+    [step]="0.05"
+    [value]="beta"
+    (input)="onBetaValueChange($event)"
+  ></mat-slider>
+
 </mat-card>
 
 <div id="visualization-container">
@@ -45,5 +56,6 @@
     [diameter]="1200"
     [hierarchyWidth]="300"
     [showFeatureNames]="true"
+    [beta]="beta"
   ></app-edge-bundles>
 </div>

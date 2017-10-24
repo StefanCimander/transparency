@@ -2,6 +2,10 @@
   margin: 1em;
 }
 
+.beta-slider {
+  width: 300px;
+}
+
 .dependencies-radio-group {
   display: inline-flex;
   flex-direction: row;
