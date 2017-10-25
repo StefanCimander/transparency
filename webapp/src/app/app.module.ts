@@ -4,17 +4,17 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { MaterialModule } from './material.module';
-
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
+import { MaterialModule } from './material.module';
 
 import {
-    DashboardComponent,
-    DependenciesPreviewComponent,
-    DependenciesDetailsComponent,
-    StatisticsComponent,
-    TreemapPreviewComponent
+  DashboardComponent,
+  DependenciesDetailsComponent,
+  DependenciesPreviewComponent,
+  DistributionDetailsComponent,
+  StatisticsComponent,
+  DistributionPreviewComponent,
 } from './dashboard';
 
 import {
@@ -29,28 +29,29 @@ import {
 } from './services';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        EdgeBundlesComponent,
-        DashboardComponent,
-        DependenciesPreviewComponent,
-        DependenciesDetailsComponent,
-        StatisticsComponent,
-        TreemapComponent,
-        TreemapPreviewComponent
-    ],
-    imports: [
-        BrowserAnimationsModule,
-        BrowserModule,
-        HttpModule,
-        MaterialModule,
-        RouterModule.forRoot(AppRoutes)
-    ],
-    providers: [
-        AppSettingService,
-        DependencyService,
-        PackageService
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    EdgeBundlesComponent,
+    DashboardComponent,
+    DependenciesDetailsComponent,
+    DependenciesPreviewComponent,
+    DistributionDetailsComponent,
+    StatisticsComponent,
+    TreemapComponent,
+    DistributionPreviewComponent
+  ],
+  imports: [
+    BrowserAnimationsModule,
+    BrowserModule,
+    HttpModule,
+    MaterialModule,
+    RouterModule.forRoot(AppRoutes)
+  ],
+  providers: [
+    AppSettingService,
+    DependencyService,
+    PackageService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

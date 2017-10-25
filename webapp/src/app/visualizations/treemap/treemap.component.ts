@@ -6,8 +6,8 @@ import { HierarchyElement } from "../../models";
 
 @Component({
   selector: 'app-treemap',
-  templateUrl: './treemap.component.html',
-  styleUrls: ['./treemap.component.css']
+  templateUrl: './treemap.teamplate.html',
+  styleUrls: ['./treemap.style.css']
 })
 export class TreemapComponent implements OnChanges {
 
@@ -16,21 +16,10 @@ export class TreemapComponent implements OnChanges {
   @Input() height = 380;
   @Input() showNames = false;
 
-  private htmlElement = this.element.nativeElement;
-  private host = d3.select(this.htmlElement);
-  private svg = this.host.append('svg')
-    .attr('width', this.width)
-    .attr('height', this.height)
-    .attr('class', 'treemap')
-    .append('g');
-
-  private format = d3.format(",d");
-
-  private treemap = d3.treemap()
-    .size([this.width, this.height])
-    .round(true)
-    .paddingOuter(5)
-    .paddingInner(1);
+  private htmlElement: HTMLElement;
+  private host;
+  private svg;
+  private treemap;
 
   constructor(private element: ElementRef) { }
 
@@ -39,10 +28,34 @@ export class TreemapComponent implements OnChanges {
   }
 
   private redrawTreemap() {
+    this.htmlElement = this.element.nativeElement;
+    this.host = d3.select(this.htmlElement);
+
+    this.buildSvg();
+    this.populate();
+  }
+
+  private buildSvg() {
+    this.host.html('');
+
+    this.svg = this.host.append('svg')
+      .attr('width', this.width)
+      .attr('height', this.height)
+      .attr('class', 'treemap')
+      .append('g');
+
+    this.treemap = d3.treemap()
+      .size([this.width, this.height])
+      .round(true)
+      .paddingOuter(5)
+      .paddingInner(1);
+  }
+
+  private populate() {
     const root = d3.hierarchy(this.hierarchy)
       .eachBefore(d => { d.data.id = (d.parent ? d.parent.data.id + "." : "") + d.data.name })
       .sum(d => d.dependencies.length)
-      .sort((a, b) =>  b.value - a.value); // b.height - a.height ||
+      .sort((a, b) =>  b.value - a.value);
 
     this.treemap(root);
 
@@ -50,6 +63,7 @@ export class TreemapComponent implements OnChanges {
       .data(root.leaves())
       .enter().append("g")
       .attr('transform', d => `translate(${d.x0}, ${d.y0})`);
+
 
     cell.append("rect")
       .attr('id', d => d.data.id)
@@ -80,6 +94,6 @@ export class TreemapComponent implements OnChanges {
     }
 
     cell.append("title")
-      .text(d => d.data.id + "\n" + this.format(d.value) + " dependencies");
+      .text(d => d.data.id + "\n" +  d3.format(",d")(d.value) + " dependencies");
   }
 }

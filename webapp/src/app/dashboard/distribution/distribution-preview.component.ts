@@ -3,11 +3,11 @@ import { Component, Input } from '@angular/core';
 import { HierarchyElement } from '../../models';
 
 @Component({
-  selector: 'app-treemap-preview',
-  templateUrl: './treemap-preview.template.html',
-  styleUrls: ['./treemap-preview.style.css']
+  selector: 'app-distribution-preview',
+  templateUrl: './distribution-preview.template.html',
+  styleUrls: ['./distribution-preview.style.css']
 })
-export class TreemapPreviewComponent {
+export class DistributionPreviewComponent {
 
   @Input() dependencyHierarchy: HierarchyElement = { id: 0, name: 'Root Package', children: [], dependencies: [] };
 
