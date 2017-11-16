@@ -49,8 +49,8 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
   private arc = d3.arc()
     .startAngle(function (d) { return d.x0})
     .endAngle(function (d) { return d.x1})
-    .innerRadius(function (d) { return d.y0})
-    .outerRadius(function (d) { return d.y1});
+    .innerRadius(function (d) { return this.radius - 100})
+    .outerRadius(function (d) { return this.radius});
 
 
   ngAfterViewInit() {
@@ -144,15 +144,15 @@ export class EdgeBundlesComponent implements AfterViewInit, OnChanges {
       .sum(d => this.valueOfNode(d))
     this.partition(newRoot);
 
-    /*
+
     this.arcs = this.arcs
-      .data(newRoot.descendants())
+      .data(newRoot.leaves())
       .enter().append('path')
       .attr('class', 'arc')
       .attr('d', this.arc)
       .attr('display', function (d) { return d.depth ? null : "none"; })
       .style('stroke', 'white')
-    */
+
   }
 
   private valueOfNode(node: any) {

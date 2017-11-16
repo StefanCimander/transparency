@@ -12,4 +12,9 @@ class FeatureService {
     private lateinit var featureDAO: FeatureDAO
 
     fun findAll() = featureDAO.findAll().map(::Feature)
+
+    fun findAllWithLogicalDependencies(): List<Feature> {
+        return featureDAO.findAllWithLogicalDependentFeatures()
+                .map(::Feature).filter { !it.dependencies.isEmpty() }
+    }
 }

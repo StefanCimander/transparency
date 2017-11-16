@@ -17,4 +17,7 @@ class FeatureController {
 
     @GetMapping()
     fun getAll() = featureService.findAll()
+
+    @GetMapping(value = "/logicallyDepending")
+    fun getAllWithLogicalDependencies() = featureService.findAllWithLogicalDependencies()
 }

@@ -39,6 +39,18 @@ class FeatureDAO {
         return features
     }
 
+    fun findAllWithLogicalDependentFeatures(): List<FeatureEntity> {
+        val session = sessionFactory.openSession()
+        val features = session.createCriteria(FeatureEntity::class.java).list() as List<FeatureEntity>
+        features.forEach {
+            it.linkedFeatures = emptyList()
+            Hibernate.initialize(it.logicallyDependentFeatures)
+            it.logicalFunctions = emptyList()
+        }
+        session.close()
+        return features
+    }
+
     fun findAllCompletelyInitialized(): List<FeatureEntity> {
         val session = sessionFactory.openSession()
         val features = session.createCriteria(FeatureEntity::class.java).list() as List<FeatureEntity>

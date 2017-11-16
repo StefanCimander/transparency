@@ -3,11 +3,12 @@
 }
 
 :host >>> .dashboard-card {
-    display: inline-block;
-    margin: .5em;
-    max-width: 26em;
-    min-height: 34.5em;
-    float: left;
+  display: inline-block;
+  margin: .5em;
+  max-width: 26em;
+  min-height: 34.5em;
+  max-height: 34.5em;
+  float: left;
 }
 
 :host >>> .dashboard-card h1 {
@@ -16,5 +17,5 @@
   color: #555555;
   margin-bottom: 0;
   padding-bottom: .5em;
-  box-shadow: 0 1px 0px #cccccc;
+  box-shadow: 0 1px 0 #cccccc;
 }

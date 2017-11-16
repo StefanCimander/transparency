@@ -9,6 +9,7 @@ import { AppRoutes } from './app.routes';
 import { MaterialModule } from './material.module';
 
 import {
+  AnalysisPreviewComponent,
   DashboardComponent,
   DependenciesDetailsComponent,
   DependenciesPreviewComponent,
@@ -18,18 +19,20 @@ import {
 } from './dashboard';
 
 import {
-    EdgeBundlesComponent,
-    TreemapComponent
+  EdgeBundlesComponent,
+  TreemapComponent
 } from './visualizations';
 
 import {
-    AppSettingService,
-    DependencyService,
-    PackageService
+  AppSettingService,
+  DependencyService,
+  FeatureService,
+  PackageService,
 } from './services';
 
 @NgModule({
   declarations: [
+    AnalysisPreviewComponent,
     AppComponent,
     EdgeBundlesComponent,
     DashboardComponent,
@@ -50,7 +53,8 @@ import {
   providers: [
     AppSettingService,
     DependencyService,
-    PackageService
+    FeatureService,
+    PackageService,
   ],
   bootstrap: [AppComponent]
 })
