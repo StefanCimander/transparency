@@ -1,12 +1,17 @@
 import { Routes } from '@angular/router';
 
 import {
+  AnalysisDetailsComponent,
   DashboardComponent,
   DependenciesDetailsComponent,
   DistributionDetailsComponent
 } from './dashboard';
 
-export const AppRoutes: Routes = [
+export const APP_ROUTES: Routes = [
+  {
+    path: 'analysis',
+    component: AnalysisDetailsComponent,
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,

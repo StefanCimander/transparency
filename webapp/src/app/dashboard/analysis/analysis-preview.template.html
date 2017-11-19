@@ -29,6 +29,13 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button routerLink="/analyse" color="primary" [disabled]="!source || !target">ANALYSE</button>
+    <button
+      mat-button
+      (click)="navigateToDetails()"
+      color="primary"
+      [disabled]="!source || !target"
+    >
+      ANALYSE
+    </button>
   </mat-card-actions>
 </mat-card>

@@ -6,7 +6,7 @@ export const API_ROUTES = {
   },
   features: {
     all: `${API_BASE_URL}/features`,
-    logicallyDependent: `${API_BASE_URL}/features/logicallyDepending`,
+    logicallyDependent: `${API_BASE_URL}/features/logically-depending`,
     withId: `${API_BASE_URL}/features/:name?includeLogicalDependencies=false`,
   },
   packages: {

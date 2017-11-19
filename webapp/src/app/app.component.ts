@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AppSettingService, DependencyService } from "./services";
+import { AppSettingService, DependencyService } from './services';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.template.html',
   styleUrls: ['./app.style.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-    public implicitDependenciesStatus: String = "deleted";
+    public implicitDependenciesStatus: String = 'deleted';
 
     constructor(
         private appSettingService: AppSettingService,

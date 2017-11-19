@@ -5,10 +5,11 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AppRoutes } from './app.routes';
+import { APP_ROUTES } from './app.routes';
 import { MaterialModule } from './material.module';
 
 import {
+  AnalysisDetailsComponent,
   AnalysisPreviewComponent,
   DashboardComponent,
   DependenciesDetailsComponent,
@@ -32,6 +33,7 @@ import {
 
 @NgModule({
   declarations: [
+    AnalysisDetailsComponent,
     AnalysisPreviewComponent,
     AppComponent,
     EdgeBundlesComponent,
@@ -48,7 +50,7 @@ import {
     BrowserModule,
     HttpModule,
     MaterialModule,
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(APP_ROUTES)
   ],
   providers: [
     AppSettingService,
