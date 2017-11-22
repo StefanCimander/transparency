@@ -14,27 +14,17 @@ class LogicalFunction(val id: Long, val name: String) {
                 .forEach { addSendingSignal(LogicalSignal(it.logicalSignal)) }
     }
 
-    fun getReceivingSignals(): List<LogicalSignal> {
-        return ArrayList(receivingSignals)
-    }
+    fun getReceivingSignals(): List<LogicalSignal> = ArrayList(receivingSignals)
 
     fun addReceivingSignal(vararg signals: LogicalSignal) {
         signals.forEach { receivingSignals.add(it) }
-    }
-
-    fun getSendingSignals(): List<LogicalSignal> {
-        return ArrayList(sendingSignals)
     }
 
     fun addSendingSignal(vararg signals: LogicalSignal) {
         signals.forEach { sendingSignals.add(it) }
     }
 
-    fun receivesSignal(signal: LogicalSignal): Boolean {
-        return receivingSignals.contains(signal)
-    }
+    fun receivesSignal(signal: LogicalSignal): Boolean = receivingSignals.contains(signal)
 
-    fun sendsSignal(signal: LogicalSignal): Boolean {
-        return sendingSignals.contains(signal)
-    }
+    fun sendsSignal(signal: LogicalSignal): Boolean = sendingSignals.contains(signal)
 }

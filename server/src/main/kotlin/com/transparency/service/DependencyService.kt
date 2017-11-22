@@ -2,6 +2,7 @@ package com.transparency.service
 
 import com.transparency.dao.FeatureDAO
 import com.transparency.entity.FeatureEntity
+import com.transparency.model.DependencyDetails
 import com.transparency.model.DependencyStatistics
 import com.transparency.model.Feature
 import org.springframework.beans.factory.annotation.Autowired
@@ -55,5 +56,9 @@ class DependencyService {
     private fun removeLogicalDependenciesFor(feature: FeatureEntity) {
         feature.logicallyDependentFeatures.clear()
         featureDAO.update(feature)
+    }
+
+    fun getDetailsWithSourceAndTargetId(sourceFeatureId: Long, targetFeatureId: Long): DependencyDetails {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
