@@ -17,6 +17,7 @@ export const API_ROUTES = {
   dependencies: {
     remove: `${API_BASE_URL}/dependencies`,
     analyse: `${API_BASE_URL}/dependencies/analyse`,
+    details: `${API_BASE_URL}/dependencies/details`,
     statistics: `${API_BASE_URL}/dependencies/statistics`
   }
 };

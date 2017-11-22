@@ -1,5 +1,7 @@
 package com.transparency.dependencies.transport
 
-import com.transparency.features.transport.FeatureTO
-
-data class DependencyDetailsTO(val source: FeatureTO, val target: FeatureTO, val causes: List<LogicalDependencyTO>)
+data class DependencyDetailsTO(
+        val sourceFeature: String,
+        val targetFeature: String,
+        val signals: List<DependencySignalTO>
+)

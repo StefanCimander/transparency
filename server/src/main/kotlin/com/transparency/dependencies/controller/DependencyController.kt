@@ -27,8 +27,8 @@ class DependencyController {
     fun analyseImplicitFeatureDependencies() = dependencyService.analyseImplicitFeatureDependencies()
 
     @GetMapping(value = "/details")
-    fun getDependencyDetails(@RequestParam(name = "sourceId") sourceFeatureId: Long,
-                             @RequestParam(name = "targetId") targetFeatureId: Long): DependencyDetailsTO =
+    fun getDependencyDetails(@RequestParam(name = "source") sourceFeatureId: Long,
+                             @RequestParam(name = "target") targetFeatureId: Long): DependencyDetailsTO =
             dependencyComponent.findDetailsWithSourceAndTargetFeatureIds(sourceFeatureId, targetFeatureId)
 
     @GetMapping(value = "/statistics")

@@ -29,12 +29,12 @@ class FeatureTO(val id: Long, val parentPackageId: Long, val name: String) {
         return getReceivingSignals().filter { !sendsSignal(it) }
     }
 
-    private fun getReceivingSignals(): Collection<LogicalSignal> {
-        return logicalFunctions.flatMap { it.getReceivingSignals() }
+    fun sendsSignal(signal: LogicalSignal): Boolean {
+        return logicalFunctions.any { it.sendsSignal(signal) }
     }
 
-    private fun sendsSignal(signal: LogicalSignal): Boolean {
-        return logicalFunctions.any { it.sendsSignal(signal) }
+    private fun getReceivingSignals(): Collection<LogicalSignal> {
+        return logicalFunctions.flatMap { it.getReceivingSignals() }
     }
 
     private fun receivesSignal(signal: LogicalSignal): Boolean {
