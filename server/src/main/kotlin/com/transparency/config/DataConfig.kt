@@ -20,7 +20,6 @@ class DataConfig {
         val config = ClassPathResource("hibernate.cfg.xml")
         val sessionFactory = org.springframework.orm.hibernate5.LocalSessionFactoryBean()
         sessionFactory.setConfigLocation(config)
-        sessionFactory.setPackagesToScan(environment.getProperty("transparency.entity.package"))
         sessionFactory.setDataSource(dataSource())
         return sessionFactory
     }

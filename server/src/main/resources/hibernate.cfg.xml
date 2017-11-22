@@ -4,16 +4,11 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
-
-        <!-- Names the annotated entity classes -->
-        <mapping class="com.transparency.entity.AppSettingEntity"/>
-        <mapping class="com.transparency.entity.FeatureEntity"/>
-        <mapping class="com.transparency.entity.PackageEntity"/>
-        <mapping class="com.transparency.entity.LogicalFunctionEntity"/>
-        <mapping class="com.transparency.entity.LogicalSignalEntity"/>
-        <mapping class="com.transparency.entity.FunctionSignalLinkEntity"/>
+        <mapping class="com.transparency.settings.entity.AppSetting"/>
+        <mapping class="com.transparency.features.entity.Feature"/>
+        <mapping class="com.transparency.packages.entity.Package"/>
+        <mapping class="com.transparency.logical.entitiy.LogicalFunctionEntity"/>
+        <mapping class="com.transparency.logical.entitiy.LogicalSignalEntity"/>
+        <mapping class="com.transparency.logical.entitiy.FunctionSignalLink"/>
     </session-factory>
-
 </hibernate-configuration>
