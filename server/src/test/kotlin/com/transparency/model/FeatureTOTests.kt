@@ -13,9 +13,9 @@ import kotlin.test.assertTrue
 class FeatureTOTests {
 
     companion object {
-        private val feature1 = FeatureTO(1L, 1L, "FeatureTO 1")
-        private val feature2 = FeatureTO(2L, 1L, "FeatureTO 2")
-        private val feature3 = FeatureTO(3L, 1L, "FeatureTO 3")
+        private val feature1 = FeatureTO("1", 1L, "FeatureTO 1")
+        private val feature2 = FeatureTO("2", 1L, "FeatureTO 2")
+        private val feature3 = FeatureTO("3", 1L, "FeatureTO 3")
 
         private val logicalFunction1 = LogicalFunctionTO(1L, "Logical Function 1")
         private val logicalFunction2 = LogicalFunctionTO(2L, "Logical Function 2")
