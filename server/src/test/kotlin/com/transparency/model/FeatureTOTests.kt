@@ -1,8 +1,8 @@
 package com.transparency.model
 
 import com.transparency.features.transport.FeatureTO
-import com.transparency.logical.transport.LogicalFunction
-import com.transparency.logical.transport.LogicalSignal
+import com.transparency.logical.transport.LogicalFunctionTO
+import com.transparency.logical.transport.LogicalSignalTO
 import org.junit.BeforeClass
 import org.junit.Test
 import java.util.*
@@ -17,20 +17,20 @@ class FeatureTOTests {
         private val feature2 = FeatureTO(2L, 1L, "FeatureTO 2")
         private val feature3 = FeatureTO(3L, 1L, "FeatureTO 3")
 
-        private val logicalFunction1 = LogicalFunction(1L, "Logical Function 1")
-        private val logicalFunction2 = LogicalFunction(2L, "Logical Function 2")
-        private val logicalFunction3 = LogicalFunction(3L, "Logical Function 3")
-        private val logicalFunction4 = LogicalFunction(4L, "Logical Function 4")
-        private val logicalFunction5 = LogicalFunction(5L, "Logical Function 5")
-        private val logicalFunction6 = LogicalFunction(6L, "Logical Function 6")
-        private val logicalFunction7 = LogicalFunction(7L, "Logical Function 7")
+        private val logicalFunction1 = LogicalFunctionTO(1L, "Logical Function 1")
+        private val logicalFunction2 = LogicalFunctionTO(2L, "Logical Function 2")
+        private val logicalFunction3 = LogicalFunctionTO(3L, "Logical Function 3")
+        private val logicalFunction4 = LogicalFunctionTO(4L, "Logical Function 4")
+        private val logicalFunction5 = LogicalFunctionTO(5L, "Logical Function 5")
+        private val logicalFunction6 = LogicalFunctionTO(6L, "Logical Function 6")
+        private val logicalFunction7 = LogicalFunctionTO(7L, "Logical Function 7")
 
-        private val logicalSignal1 = LogicalSignal(1L, "Logical Signal 1")
-        private val logicalSignal2 = LogicalSignal(2L, "Logical Signal 2")
-        private val logicalSignal3 = LogicalSignal(3L, "Logical Signal 3")
-        private val logicalSignal4 = LogicalSignal(4L, "Logical Signal 4")
-        private val logicalSignal5 = LogicalSignal(5L, "Logical Signal 5")
-        private val logicalSignal6 = LogicalSignal(6L, "Logical Signal 6")
+        private val logicalSignal1 = LogicalSignalTO(1L, "Logical Signal 1")
+        private val logicalSignal2 = LogicalSignalTO(2L, "Logical Signal 2")
+        private val logicalSignal3 = LogicalSignalTO(3L, "Logical Signal 3")
+        private val logicalSignal4 = LogicalSignalTO(4L, "Logical Signal 4")
+        private val logicalSignal5 = LogicalSignalTO(5L, "Logical Signal 5")
+        private val logicalSignal6 = LogicalSignalTO(6L, "Logical Signal 6")
 
         @BeforeClass
         @JvmStatic fun setupTestArchitecture() {

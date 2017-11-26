@@ -8,9 +8,9 @@ data class FunctionSignalLink(@Id val id: Long, @Enumerated(EnumType.STRING) val
 
     @ManyToOne()
     @JoinColumn(name = "function_id")
-    lateinit var logicalFunction: LogicalFunctionEntity
+    lateinit var logicalFunction: LogicalFunction
 
     @ManyToOne()
     @JoinColumn(name = "signal_id")
-    lateinit var logicalSignal: LogicalSignalEntity
+    lateinit var logicalSignal: LogicalSignal
 }

@@ -6,4 +6,4 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "logical_signals")
-data class LogicalSignalEntity(@Id val id: Long, val name: String)
+data class LogicalSignal(@Id val id: Long, val name: String)

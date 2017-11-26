@@ -1,6 +1,6 @@
 package com.transparency.features.entity
 
-import com.transparency.logical.entitiy.LogicalFunctionEntity
+import com.transparency.logical.entitiy.LogicalFunction
 import com.transparency.packages.entity.Package
 import javax.persistence.*
 
@@ -31,7 +31,7 @@ data class Feature(@Id val id: Long, val name: String) {
             name = "feature_function_mappings",
             joinColumns = arrayOf(JoinColumn(name = "feature_id", referencedColumnName = "id")),
             inverseJoinColumns = arrayOf(JoinColumn(name = "logical_function_id", referencedColumnName = "id")))
-    lateinit var logicalFunctions: List<LogicalFunctionEntity>
+    lateinit var logicalFunctions: List<LogicalFunction>
 
     val hasLogicalDependencies: Boolean
         get() = !logicallyDependentFeatures.isEmpty()

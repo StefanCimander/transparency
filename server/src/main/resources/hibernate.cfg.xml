@@ -7,8 +7,8 @@
         <mapping class="com.transparency.settings.entity.AppSetting"/>
         <mapping class="com.transparency.features.entity.Feature"/>
         <mapping class="com.transparency.packages.entity.Package"/>
-        <mapping class="com.transparency.logical.entitiy.LogicalFunctionEntity"/>
-        <mapping class="com.transparency.logical.entitiy.LogicalSignalEntity"/>
+        <mapping class="com.transparency.logical.entitiy.LogicalFunction"/>
+        <mapping class="com.transparency.logical.entitiy.LogicalSignal"/>
         <mapping class="com.transparency.logical.entitiy.FunctionSignalLink"/>
     </session-factory>
 </hibernate-configuration>

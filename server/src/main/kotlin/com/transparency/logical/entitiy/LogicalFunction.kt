@@ -7,7 +7,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "logical_functions")
-data class LogicalFunctionEntity(@Id val id: Long, val name: String) {
+data class LogicalFunction(@Id val id: Long, val name: String) {
 
     @OneToMany(mappedBy = "logicalFunction")
     lateinit var signalLinks: List<FunctionSignalLink>
