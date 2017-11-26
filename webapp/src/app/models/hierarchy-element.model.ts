@@ -2,7 +2,7 @@ import { Feature, Dependency, Package } from './';
 
 export class HierarchyElement {
   constructor(
-    public id: number,
+    public id: string,
     public name: string,
     public children: HierarchyElement[],
     public dependencies: HierarchyElement[],
@@ -12,7 +12,7 @@ export class HierarchyElement {
   public static fromPackage(pack: Package): HierarchyElement {
     let children = pack.children != undefined ? pack.children.map(HierarchyElement.fromPackage) : [];
     let features = pack.features != undefined ? pack.features.map(HierarchyElement.fromFeature) : [];
-    return new HierarchyElement(pack.id, pack.name, children.concat(features), []);
+    return new HierarchyElement(String(pack.id), pack.name, children.concat(features), []);
   }
 
   private static fromFeature(feature: Feature): HierarchyElement {

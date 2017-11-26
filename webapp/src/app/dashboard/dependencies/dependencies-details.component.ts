@@ -12,7 +12,7 @@ import { PackageService, DependenciesRequest } from '../../services/';
 export class DependenciesDetailsComponent implements OnInit {
   private selectedDependenciesRequest: DependenciesRequest = DependenciesRequest.ALL_DEPENDENCIES;
 
-  public dependencyHierarchy: HierarchyElement = { id: 0, name: 'Root Package', children: [], dependencies: [] };
+  public dependencyHierarchy: HierarchyElement = { id: "0", name: 'Root Package', children: [], dependencies: [] };
   public beta = 0.7;
 
   constructor(private packageService: PackageService) { }
@@ -22,7 +22,7 @@ export class DependenciesDetailsComponent implements OnInit {
   }
 
   public dependenciesRequestChanged(dependenciesRequestName: String) {
-    const request = this.dependenciesRequestForName(dependenciesRequestName)
+    const request = this.dependenciesRequestForName(dependenciesRequestName);
     this.loadHierarchyWithDependenciesRequest(request)
   }
 

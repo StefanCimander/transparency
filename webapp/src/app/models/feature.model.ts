@@ -2,7 +2,7 @@ import { Dependency, ApiDependency} from './dependency.model';
 
 export class Feature {
   constructor (
-    public id: number,
+    public id: string,
     public name: string,
     public dependencies: Dependency[]
   ) { }
@@ -17,7 +17,7 @@ export class Feature {
 }
 
 export interface ApiFeature {
-  id: number;
+  id: string;
   name: string;
   dependencies?: ApiDependency[];
 }

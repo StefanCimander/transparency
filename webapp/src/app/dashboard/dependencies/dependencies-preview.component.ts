@@ -9,5 +9,5 @@ import { HierarchyElement } from "../../models";
 })
 export class DependenciesPreviewComponent {
 
-  @Input() dependencyHierarchy: HierarchyElement = { id: 0, name: 'Root Package', children: [], dependencies: [] };
+  @Input() dependencyHierarchy: HierarchyElement = { id: "0", name: 'Root Package', children: [], dependencies: [] };
 }

@@ -10,7 +10,7 @@ import { PackageService, DependenciesRequest } from '../services';
 })
 export class DashboardComponent implements OnInit {
 
-  public dependencyHierarchy: HierarchyElement = { id: 0, name: 'Root Package', children: [], dependencies: [] };
+  public dependencyHierarchy: HierarchyElement = { id: "0", name: 'Root Package', children: [], dependencies: [] };
 
   constructor(private packageService: PackageService) { }
 

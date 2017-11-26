@@ -1,7 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { Feature } from '../../models';
+import { DependencyDetails } from '../../models';
+import { DependencyService } from '../../services';
 
 @Component({
   selector: 'app-analysis-details',
@@ -10,17 +11,20 @@ import { Feature } from '../../models';
 })
 export class AnalysisDetailsComponent implements OnInit {
 
-  private source: Feature;
-  private target: Feature;
+  private details: DependencyDetails;
 
   constructor(
     private route: ActivatedRoute,
+    private dependencyService: DependencyService,
   ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
-      // TODO: Make service request with the two feature ids.
+      this.dependencyService.getDetails(params.sourceId, params.targetId)
+        .subscribe(details => {
+          console.log(details);
+          this.details = details
+        });
     });
   }
 

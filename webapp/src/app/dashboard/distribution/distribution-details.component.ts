@@ -10,7 +10,7 @@ import { HierarchyElement } from "../../models";
 })
 export class DistributionDetailsComponent implements OnInit {
 
-  public dependencyHierarchy: HierarchyElement = { id: 0, name: 'Root Package', children: [], dependencies: [] };
+  public dependencyHierarchy: HierarchyElement = { id: "0", name: 'Root Package', children: [], dependencies: [] };
 
   constructor(private packageService: PackageService) { }
 

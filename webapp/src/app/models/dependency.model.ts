@@ -1,6 +1,6 @@
 export class Dependency {
   constructor(
-    public id: number,
+    public id: string,
     public name: string,
     public type: string,
   ) { }
@@ -15,7 +15,7 @@ export class Dependency {
 }
 
 export interface ApiDependency {
-  id: number;
+  id: string;
   name: string;
   type: string;
 }
