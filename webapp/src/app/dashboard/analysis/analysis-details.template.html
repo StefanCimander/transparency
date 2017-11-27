@@ -1,0 +1,8 @@
+<div class="vis-container" *ngIf="details">
+  <app-mapping-graph
+    [features]="features"
+    [receivingFunctions]="receivingFunctions"
+    [sendingFunctions]="sendingFunctions"
+    [signals]="details.signals"
+  ></app-mapping-graph>
+</div>

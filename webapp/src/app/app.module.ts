@@ -21,6 +21,7 @@ import {
 
 import {
   EdgeBundlesComponent,
+  MappingGraphComponent,
   TreemapComponent
 } from './visualizations';
 
@@ -41,6 +42,7 @@ import {
     DependenciesDetailsComponent,
     DependenciesPreviewComponent,
     DistributionDetailsComponent,
+    MappingGraphComponent,
     StatisticsComponent,
     TreemapComponent,
     DistributionPreviewComponent
