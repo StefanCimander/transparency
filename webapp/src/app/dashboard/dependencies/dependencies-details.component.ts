@@ -22,7 +22,7 @@ export class DependenciesDetailsComponent implements OnInit {
   }
 
   public dependenciesRequestChanged(dependenciesRequestName: String) {
-    const request = this.dependenciesRequestForName(dependenciesRequestName);
+    const request = DependenciesDetailsComponent.dependenciesRequestForName(dependenciesRequestName);
     this.loadHierarchyWithDependenciesRequest(request)
   }
 
@@ -31,12 +31,13 @@ export class DependenciesDetailsComponent implements OnInit {
   }
 
   private loadHierarchyWithDependenciesRequest(dependenciesRequest: DependenciesRequest) {
-    this.packageService.getHierarchy(dependenciesRequest).subscribe(rootPackage =>
-      this.dependencyHierarchy = HierarchyElement.fromPackage(rootPackage)
+    this.packageService.getHierarchy(dependenciesRequest).subscribe(rootPackage => {
+      this.dependencyHierarchy = HierarchyElement.fromPackage(rootPackage);
+      console.log(DependenciesDetailsComponent.numberOfDependencies(this.dependencyHierarchy)); }
     );
   }
 
-  private dependenciesRequestForName(name: String): DependenciesRequest {
+  private static dependenciesRequestForName(name: String): DependenciesRequest {
     switch (name) {
       case "All Dependencies": return DependenciesRequest.ALL_DEPENDENCIES;
       case "Only Explicit": return DependenciesRequest.ONLY_EXPLICIT;
@@ -44,5 +45,15 @@ export class DependenciesDetailsComponent implements OnInit {
       case "Conformal": return DependenciesRequest.CONFORMAL;
       case "Non Conformal": return DependenciesRequest.NON_CONFORMAL;
     }
+  }
+
+  private static numberOfDependencies(hierarchyElement: HierarchyElement): number {
+    if (hierarchyElement.children.length == 0) {
+      return hierarchyElement.dependencies
+        .filter(dependency => dependency.type == 'FEATURE_LINK').length;
+    }
+    return hierarchyElement.children
+      .map (child => DependenciesDetailsComponent.numberOfDependencies(child))
+      .reduce((a, b) => a + b, 0);
   }
 }

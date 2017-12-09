@@ -11,15 +11,18 @@ import { HierarchyElement } from "../../models";
 })
 export class TreemapComponent implements OnChanges {
 
-  @Input() hierarchy: HierarchyElement
+  @Input() hierarchy: HierarchyElement;
   @Input() width = 380;
   @Input() height = 380;
   @Input() showNames = false;
+  @Input() direction = 'Incoming';
+  @Input() threshold = 70;
 
   private htmlElement: HTMLElement;
   private host;
   private svg;
   private treemap;
+  private incomingDependencies = {};
 
   constructor(private element: ElementRef) { }
 
@@ -31,8 +34,21 @@ export class TreemapComponent implements OnChanges {
     this.htmlElement = this.element.nativeElement;
     this.host = d3.select(this.htmlElement);
 
+    this.incomingDependencies = {};
+    this.calculateIncomingDependencies(this.hierarchy);
     this.buildSvg();
     this.populate();
+  }
+
+  private calculateIncomingDependencies(hierarchyElement: HierarchyElement) {
+    hierarchyElement.dependencies.forEach(dep => {
+      if (this.incomingDependencies[dep.name]) {
+        this.incomingDependencies[dep.name] += 1;
+      } else {
+        this.incomingDependencies[dep.name] = 1;
+      }
+    });
+    hierarchyElement.children.forEach(child => this.calculateIncomingDependencies(child));
   }
 
   private buildSvg() {
@@ -51,10 +67,17 @@ export class TreemapComponent implements OnChanges {
       .paddingInner(1);
   }
 
+  private dependencyCount(hierarchyElement: HierarchyElement): number {
+    if (this.direction === 'Incoming') {
+      return this.incomingDependencies[hierarchyElement.name];
+    }
+    return hierarchyElement.dependencies.length
+  }
+
   private populate() {
     const root = d3.hierarchy(this.hierarchy)
       .eachBefore(d => { d.data.id = (d.parent ? d.parent.data.id + "." : "") + d.data.name })
-      .sum(d => d.dependencies.length)
+      .sum(d => this.dependencyCount(d))
       .sort((a, b) =>  b.value - a.value);
 
     this.treemap(root);
@@ -71,7 +94,7 @@ export class TreemapComponent implements OnChanges {
       .attr('height', d => d.y1 - d.y0)
       .attr('fill', d => {
         if (d.parent) {
-          return d.value > 60 ? '#ff5858' : 'steelblue';
+          return this.dependencyCount(d.data) > this.threshold ? '#ff5858' : 'steelblue';
         }
         return 'white';
       });

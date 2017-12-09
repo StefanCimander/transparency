@@ -1,8 +1,39 @@
+<mat-card class="control-container">
+  <mat-radio-group class="dependencies-radio-group">
+    <mat-radio-button
+      class="dependencies-radio-button"
+      checked="true"
+      [value]="1"
+      (change)="dependenciesDirectionChanged('Incoming')"
+      color="primary"
+    >Incoming Dependencies</mat-radio-button>
+
+    <mat-radio-button
+      class="dependencies-radio-button"
+      [value]="2"
+      (change)="dependenciesDirectionChanged('Outgoing')"
+      color="primary"
+    >Outgoing Dependencies</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-slider
+    class="beta-slider"
+    color="primary"
+    [max]="150"
+    [min]="0"
+    [step]="10"
+    [value]="threshold"
+    (input)="onThresholdChanged($event)"
+  >{{ threshold }} Dependencies</mat-slider>
+</mat-card>
+
 <div id="visualization-container">
   <app-treemap
     [hierarchy]="dependencyHierarchy"
     [width]="1200"
     [height]="800"
     [showNames]="true"
+    [direction]="direction"
+    [threshold]="threshold"
   ></app-treemap>
 </div>

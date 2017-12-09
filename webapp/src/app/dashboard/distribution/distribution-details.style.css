@@ -1,3 +1,16 @@
+.control-container {
+  margin: 1em;
+}
+
+.dependencies-radio-group {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.dependencies-radio-button {
+  margin: 0 2em 0 0;
+}
+
 #visualization-container {
   text-align: center;
 }
