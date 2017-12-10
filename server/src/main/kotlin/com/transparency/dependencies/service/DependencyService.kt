@@ -55,37 +55,12 @@ class DependencyService: DependencyComponent {
         }
     }
 
-    var logicalFunctionsWithoutDuplicates = HashSet<String>()
-    var sizeCount = HashMap<Int, Int>()
-
     fun deleteImplicitDependencies() {
-        featureService.findAllLogicallyDepending().forEach { feature -> feature.dependencies
-                .filter { it.type == DependencyType.LOGICAL_DEPENDENCY }
-                .forEach {
-                    logicalFunctionsWithoutDuplicates = HashSet()
-                    val details = this.findDetailsWithSourceAndTargetFeatureIds(feature.id.toLong(), it.id.toLong())
-                    details.signals.forEach { signal ->
-                        logicalFunctionsWithoutDuplicates.add(signal.sendingFunction)
-                        logicalFunctionsWithoutDuplicates.add(signal.receivingFunction)
-                    }
-                    println(logicalFunctionsWithoutDuplicates.size)
-                    val previous = sizeCount.get(logicalFunctionsWithoutDuplicates.size)
-                    if (previous != null) {
-                        sizeCount.put(logicalFunctionsWithoutDuplicates.size, previous + 1)
-                    } else {
-                        sizeCount.put(logicalFunctionsWithoutDuplicates.size, 1)
-                    }
-                }
-        }
-        println("Ready")
-
-        /*
         val allFeatures = featureDAO.findAllIncludingDependenciesAndLogicalFunctions()
         println("Deleting logical dependencies from " +
                 "${allFeatures.filter { !it.logicallyDependentFeatures.isEmpty() }.size} features")
         allFeatures.forEach { removeLogicalDependenciesFor(it) }
         appSettingService.updateWithNameToNewValue("status-implicit-dependencies", "deleted")
-        */
     }
 
     private fun removeLogicalDependenciesFor(feature: Feature) {
