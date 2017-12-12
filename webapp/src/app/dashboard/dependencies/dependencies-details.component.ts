@@ -31,9 +31,8 @@ export class DependenciesDetailsComponent implements OnInit {
   }
 
   private loadHierarchyWithDependenciesRequest(dependenciesRequest: DependenciesRequest) {
-    this.packageService.getHierarchy(dependenciesRequest).subscribe(rootPackage => {
-      this.dependencyHierarchy = HierarchyElement.fromPackage(rootPackage);
-      console.log(DependenciesDetailsComponent.numberOfDependencies(this.dependencyHierarchy)); }
+    this.packageService.getHierarchy(dependenciesRequest).subscribe(rootPackage =>
+      this.dependencyHierarchy = HierarchyElement.fromPackage(rootPackage)
     );
   }
 
@@ -45,15 +44,5 @@ export class DependenciesDetailsComponent implements OnInit {
       case "Conformal": return DependenciesRequest.CONFORMAL;
       case "Non Conformal": return DependenciesRequest.NON_CONFORMAL;
     }
-  }
-
-  private static numberOfDependencies(hierarchyElement: HierarchyElement): number {
-    if (hierarchyElement.children.length == 0) {
-      return hierarchyElement.dependencies
-        .filter(dependency => dependency.type == 'FEATURE_LINK').length;
-    }
-    return hierarchyElement.children
-      .map (child => DependenciesDetailsComponent.numberOfDependencies(child))
-      .reduce((a, b) => a + b, 0);
   }
 }
