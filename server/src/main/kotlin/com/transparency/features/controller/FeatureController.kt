@@ -18,6 +18,6 @@ class FeatureController {
     @GetMapping()
     fun getAll() = featureComponent.findAll()
 
-    @GetMapping(value = "/logically-depending")
+    @GetMapping(value = ["/logically-depending"])
     fun getAllLogicallyDepending() = featureComponent.findAllLogicallyDepending()
 }

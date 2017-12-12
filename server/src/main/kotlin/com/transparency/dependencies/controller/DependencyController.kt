@@ -1,9 +1,8 @@
 package com.transparency.dependencies.controller
 
 import com.transparency.dependencies.DependencyComponent
-import com.transparency.dependencies.transport.DependencyDetailsTO
 import com.transparency.dependencies.service.DependencyService
-
+import com.transparency.dependencies.transport.DependencyDetailsTO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
@@ -23,14 +22,14 @@ class DependencyController {
     @DeleteMapping()
     fun deleteImplicitFeatureDependencies() = dependencyService.deleteImplicitDependencies()
 
-    @PutMapping(value = "/analyse")
+    @PutMapping(value = ["/analyse"])
     fun analyseImplicitFeatureDependencies() = dependencyService.analyseImplicitFeatureDependencies()
 
-    @GetMapping(value = "/details")
+    @GetMapping(value = ["/details"])
     fun getDependencyDetails(@RequestParam(name = "source") sourceFeatureId: Long,
                              @RequestParam(name = "target") targetFeatureId: Long): DependencyDetailsTO =
             dependencyComponent.findDetailsWithSourceAndTargetFeatureIds(sourceFeatureId, targetFeatureId)
 
-    @GetMapping(value = "/statistics")
+    @GetMapping(value = ["/statistics"])
     fun getDependencyStatistics() = dependencyService.getDependencyStatistics()
 }

@@ -1,25 +1,26 @@
 package com.transparency.packages.service
 
+import com.transparency.dependencies.transport.DependenciesRequest
+import com.transparency.packages.PackageComponent
 import com.transparency.packages.dao.PackageDAO
 import com.transparency.packages.exception.HierarchyRootNotFoundException
 import com.transparency.packages.exception.PackageNotFoundException
 import com.transparency.packages.transport.PackageTO
-import com.transparency.dependencies.transport.DependenciesRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class PackageService {
+class PackageService: PackageComponent {
 
     @Autowired
     private lateinit var packageDAO: PackageDAO
 
-    fun findAll(): List<PackageTO> {
+    override fun findAll(): List<PackageTO> {
         return packageDAO.findAll().map(::PackageTO)
     }
 
     @Throws(PackageNotFoundException::class)
-    fun findById(id: Long): PackageTO {
+    override fun findById(id: Long): PackageTO {
         val packageEntity = packageDAO.findById(id)
         return PackageTO(packageEntity)
     }

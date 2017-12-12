@@ -5,8 +5,7 @@ import com.transparency.features.dao.FeatureDAO
 import com.transparency.features.entity.Feature
 import com.transparency.dependencies.transport.DependencyDetailsTO
 import com.transparency.dependencies.transport.DependencyStatisticsTO
-import com.transparency.dependencies.transport.DependencyType
-import com.transparency.features.service.FeatureService
+import com.transparency.features.FeatureComponent
 import com.transparency.features.transport.FeatureTO
 import com.transparency.settings.service.AppSettingService
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,7 +18,7 @@ class DependencyService: DependencyComponent {
     lateinit var detailsAnalyser: DependencyDetailsAnalyser
 
     @Autowired
-    lateinit var featureService: FeatureService
+    lateinit var featureComponent: FeatureComponent
 
     @Autowired
     lateinit var featureDAO: FeatureDAO
@@ -69,8 +68,8 @@ class DependencyService: DependencyComponent {
     }
 
     override fun findDetailsWithSourceAndTargetFeatureIds(sourceFeatureId: Long, targetFeatureId: Long): DependencyDetailsTO {
-        val sourceFeature = featureService.findById(sourceFeatureId)
-        val targetFeature = featureService.findById(targetFeatureId)
+        val sourceFeature = featureComponent.findById(sourceFeatureId)
+        val targetFeature = featureComponent.findById(targetFeatureId)
         return detailsAnalyser.findDetailsWithSourceAndTargetFeature(sourceFeature, targetFeature)
     }
 }
