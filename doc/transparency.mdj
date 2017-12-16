@@ -757,7 +757,7 @@
 									},
 									"edgePosition": 1,
 									"underline": false,
-									"text": "+uses",
+									"text": "+depends on",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": false
@@ -2461,19 +2461,19 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 112,
+									"left": 119,
 									"top": 182,
-									"width": 51,
+									"width": 70.458984375,
 									"height": 13,
 									"autoResize": false,
-									"alpha": -0.5266273170362039,
-									"distance": 49.73932046178355,
+									"alpha": -0.7736339910572169,
+									"distance": 60.108235708594876,
 									"hostEdge": {
 										"$ref": "AAAAAAFcW2JgZ/j3f6I="
 									},
 									"edgePosition": 2,
 									"underline": false,
-									"text": "+uses",
+									"text": "+realized by",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": false
@@ -3961,7 +3961,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbNf8mjqjqrUM="
 							},
-							"name": "uses",
+							"name": "depends on",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAFcRjOBpW/tVso=",
@@ -4211,7 +4211,7 @@
 								"_parent": {
 									"$ref": "AAAAAAFcW2JgZfjzwJ4="
 								},
-								"name": "uses",
+								"name": "realized by",
 								"reference": {
 									"$ref": "AAAAAAFcW1ekRvWv/kg="
 								},
